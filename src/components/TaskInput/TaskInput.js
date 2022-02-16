@@ -11,8 +11,14 @@ export default function TaskInput({ handleSubmit }) {
         type="text"
         name="taskInput"
         data-testid="create-todo-input"
+        placeholder="Introduce the task here!"
       />
-      <input type="checkbox" name="check" className="inputCheck" />
+      <input
+        type="checkbox"
+        disabled="disabled"
+        name="check"
+        className="inputCheck"
+      />
     </fieldset>
   );
 }
