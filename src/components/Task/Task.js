@@ -2,14 +2,17 @@ import { React } from "react";
 import "./checkbox.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
 
-export default function Task({ task, checkboxHandler }) {
+export default function Task({ task, checkboxHandler, deleteHandler }) {
   const checkboxAction = () => {
     checkboxHandler(task.id);
+  };
+  const deleteItem = () => {
+    deleteHandler(task.id);
   };
   return (
     <li>
       <fieldset className="taskFieldset">
-        <button type="button" className="deleteBtn">
+        <button onClick={deleteItem} type="button" className="deleteBtn">
           <img src={deleteIcon} alt="icon delete" />
         </button>
         <input

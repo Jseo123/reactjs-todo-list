@@ -2,7 +2,11 @@ import React from "react";
 import Task from "../Task";
 import "./tasklist.scss";
 
-export default function TaskList({ taskElements, completeHandler }) {
+export default function TaskList({
+  taskElements,
+  completeHandler,
+  deleteHandler,
+}) {
   if (taskElements.length === 0) {
     return (
       <ul className="todosList" data-testid="todos-list">
@@ -15,6 +19,7 @@ export default function TaskList({ taskElements, completeHandler }) {
       {taskElements.map((element) => (
         <Task
           checkboxHandler={completeHandler}
+          deleteHandler={deleteHandler}
           key={element.id}
           task={element}
         />

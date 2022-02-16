@@ -47,7 +47,17 @@ function App() {
       });
     }
   };
-  console.log(todoList.tasks);
+
+  const deleteTask = (id) => {
+    const { tasks } = todoList;
+    const taskSelected = tasks.find((task) => task.id === id);
+    const indexTaskSelected = tasks.indexOf(taskSelected);
+    tasks.splice(indexTaskSelected, 1);
+    console.log(tasks);
+    setTodoList({
+      tasks: [...tasks],
+    });
+  };
   return (
     <>
       <header />
@@ -58,7 +68,7 @@ function App() {
         </article>
         <article className="todoListContainer">
           <TaskList
-            /* deleteHandler={deleteTask} */
+            deleteHandler={deleteTask}
             completeHandler={taskStatus}
             taskElements={todoList.tasks}
           />
