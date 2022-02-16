@@ -2,6 +2,7 @@ import { useState, React } from "react";
 import { v4 as uuid } from "uuid";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
+import Footer from "./components/Footer";
 import "./app.scss";
 
 function App() {
@@ -57,9 +58,11 @@ function App() {
         </article>
         <article className="todoListContainer">
           <TaskList
-            /* deleteHandler={deleteTask} */ completeHandler={taskStatus}
+            /* deleteHandler={deleteTask} */
+            completeHandler={taskStatus}
             taskElements={todoList.tasks}
           />
+          <Footer />
         </article>
       </main>
     </>

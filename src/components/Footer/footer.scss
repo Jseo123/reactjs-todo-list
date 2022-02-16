@@ -1,0 +1,24 @@
+@use "../../assets/styles/_variables.scss" as variables;
+
+.footerCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 10px;
+  justify-content: space-around;
+  min-width: 50%;
+}
+
+.counter {
+  color: #a7a6ac;
+  font-size: xx-small;
+  display: flex;
+  align-items: center;
+}
+
+.Clear {
+  display: flex;
+  color: #a7a6ac;
+  font-size: xx-small;
+  justify-self: flex-end;
+}
