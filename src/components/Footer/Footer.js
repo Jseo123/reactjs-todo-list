@@ -4,11 +4,11 @@ import Pagination from "../Pagination";
 import Clear from "../Clear";
 import "./footer.scss";
 
-export default function Footer() {
+export default function Footer({ taskNumber }) {
   return (
     <footer>
       <div className="counter">
-        <Counter />
+        <Counter taskNumber={taskNumber} />
       </div>
       <div className="footerCenter">
         <Pagination />

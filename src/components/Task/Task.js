@@ -8,7 +8,7 @@ export default function Task({ task }) {
           type="text"
           name="task"
           data-testid="todo-item"
-          value={task.text}
+          defaultValue={task.text}
         />
         <input type="checkbox" name="checkTask" className="inputCheck" />
       </fieldset>

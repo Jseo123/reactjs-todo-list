@@ -25,6 +25,7 @@ function App() {
     });
     e.target.value = ""; // reset input
   };
+
   return (
     <>
       <header />
@@ -33,9 +34,9 @@ function App() {
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
-        <article className="todoListContainer">
+        <article className="">
           <TaskList taskElements={todoList.tasks} />
-          <Footer />
+          <Footer taskNumber={checkState} />
         </article>
       </main>
     </>
