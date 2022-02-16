@@ -2,7 +2,10 @@ import { React } from "react";
 import "./checkbox.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
 
-export default function Task({ task }) {
+export default function Task({ task, checkboxHandler }) {
+  const checkboxAction = () => {
+    checkboxHandler(task.id);
+  };
   return (
     <li>
       <fieldset className="taskFieldset">
@@ -16,7 +19,12 @@ export default function Task({ task }) {
           data-testid="todo-item"
           value={task.text}
         />
-        <input type="checkbox" name="checkTask" className="inputCheck" />
+        <input
+          onChange={checkboxAction}
+          type="checkbox"
+          name="checkTask"
+          className="inputCheck"
+        />
       </fieldset>
     </li>
   );

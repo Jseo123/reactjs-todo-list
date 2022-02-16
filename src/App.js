@@ -11,7 +11,6 @@ function App() {
   });
 
   const addTask = (e) => {
-    if (e.key !== "Enter") return;
     if (e.target.value === "") return; // error msg
     const newTask = {
       id: uuid(),
@@ -20,10 +19,23 @@ function App() {
       isEditing: false,
     };
     setTodoList({
+      ...todoList,
       tasks: [...todoList.tasks, newTask],
     });
     e.target.value = ""; // reset input
   };
+  const taskStatus = (id) => {
+    const { tasks } = todoList;
+    const taskSelected = tasks.find((task) => task.id === id);
+    if (!taskSelected.done) {
+      taskSelected.done = true;
+      setTodoList({
+        ...todoList,
+        tasksCompleted: [...todoList.tasksCompleted, taskSelected],
+      });
+    }
+  };
+  console.log(todoList.tasksCompleted);
   return (
     <>
       <header />
@@ -33,7 +45,10 @@ function App() {
           <TaskInput handleSubmit={addTask} />
         </article>
         <article className="todoListContainer">
-          <TaskList taskElements={todoList.tasks} />
+          <TaskList
+            /* deleteHandler={deleteTask} */ completeHandler={taskStatus}
+            taskElements={todoList.tasks}
+          />
         </article>
       </main>
     </>

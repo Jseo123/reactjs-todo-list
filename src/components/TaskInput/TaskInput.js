@@ -1,13 +1,13 @@
 import { React } from "react";
 
 export default function TaskInput({ handleSubmit }) {
-  function test(e) {
-    handleSubmit(e);
+  function handleKeyPress(e) {
+    if (e.key === "Enter") handleSubmit(e);
   }
   return (
     <fieldset>
       <input
-        onKeyPress={test}
+        onKeyPress={handleKeyPress}
         type="text"
         name="taskInput"
         data-testid="create-todo-input"

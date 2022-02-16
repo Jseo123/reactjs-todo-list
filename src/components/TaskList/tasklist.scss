@@ -17,6 +17,11 @@ ul {
   input {
     text-indent: 10px;
   }
+  .checkTask {
+    &:checked {
+      content: "✔";
+    }
+  }
 }
 .deleteBtn {
   border: none;
