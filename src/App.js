@@ -53,10 +53,12 @@ function App() {
     const taskSelected = tasks.find((task) => task.id === id);
     const indexTaskSelected = tasks.indexOf(taskSelected);
     tasks.splice(indexTaskSelected, 1);
-    console.log(tasks);
     setTodoList({
       tasks: [...tasks],
     });
+  };
+  const editTask = () => {
+    console.log(1);
   };
   return (
     <>
@@ -68,6 +70,7 @@ function App() {
         </article>
         <article className="todoListContainer">
           <TaskList
+            editHandler={editTask}
             deleteHandler={deleteTask}
             completeHandler={taskStatus}
             taskElements={todoList.tasks}
