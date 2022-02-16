@@ -17,7 +17,7 @@ export default function Task({ task, checkboxHandler }) {
           type="text"
           name="task"
           data-testid="todo-item"
-          value={task.text}
+          defaultValue={task.text}
         />
         <input
           onChange={checkboxAction}

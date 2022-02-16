@@ -22,9 +22,15 @@ ul {
       content: "✔";
     }
   }
+  &:hover {
+    .deleteBtn {
+      visibility: visible;
+    }
+  }
 }
 .deleteBtn {
   border: none;
+  visibility: hidden;
   background-color: inherit;
   img {
     width: 20px;

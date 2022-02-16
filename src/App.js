@@ -7,7 +7,6 @@ import "./app.scss";
 function App() {
   const [todoList, setTodoList] = useState({
     tasks: [],
-    tasksCompleted: [],
   });
 
   const addTask = (e) => {
@@ -28,14 +27,26 @@ function App() {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
-      taskSelected.done = true;
+      const taskEdited = { ...taskSelected, done: true };
+      const indexTaskSelected = tasks.indexOf(taskSelected);
+      tasks[indexTaskSelected] = taskEdited;
+
       setTodoList({
         ...todoList,
-        tasksCompleted: [...todoList.tasksCompleted, taskSelected],
+        tasks: [...tasks],
+      });
+    } else {
+      const taskEdited = { ...taskSelected, done: false };
+      const indexTaskSelected = tasks.indexOf(taskSelected);
+      tasks[indexTaskSelected] = taskEdited;
+
+      setTodoList({
+        ...todoList,
+        tasks: [...tasks],
       });
     }
   };
-  console.log(todoList.tasksCompleted);
+  console.log(todoList.tasks);
   return (
     <>
       <header />
