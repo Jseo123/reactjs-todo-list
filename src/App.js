@@ -24,7 +24,6 @@ function App() {
     });
     e.target.value = ""; // reset input
   };
-  console.log(todoList.tasks);
   return (
     <>
       <header />
@@ -34,11 +33,7 @@ function App() {
           <TaskInput handleSubmit={addTask} />
         </article>
         <article>
-          <TaskList>
-            {todoList.tasks.map((task) => (
-              <li key={task.id}>{task.text}</li>
-            ))}
-          </TaskList>
+          <TaskList tasks={todoList.tasks} />
         </article>
       </main>
     </>
