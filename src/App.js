@@ -29,10 +29,10 @@ function App() {
       <header />
       <main>
         <h1 className="title">TODO</h1>
-        <article>
+        <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
-        <article>
+        <article className="todoListContainer">
           <TaskList taskElements={todoList.tasks} />
         </article>
       </main>

@@ -1,0 +1,16 @@
+@use "../../assets/styles/_variables.scss" as variables;
+
+li {
+  list-style: none;
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.taskFieldset {
+  border-radius: 0;
+  border-bottom: 1px solid #f0eff2;
+}

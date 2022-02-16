@@ -34,7 +34,7 @@ main {
   }
 }
 
-article {
+.createTaskContainer {
   margin: 15px 0;
   width: 100%;
   border-radius: 5px;
@@ -48,6 +48,7 @@ fieldset {
   flex-direction: row-reverse;
   border-radius: 5px;
   background-color: white;
+  min-height: 5vh;
 
   input {
     width: 80%;
@@ -69,4 +70,10 @@ fieldset {
   .inputCheck:checked {
     background: variables.$gradient;
   }
+}
+
+.todoListContainer {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
