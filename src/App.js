@@ -60,6 +60,16 @@ function App() {
   const editTask = () => {
     console.log(1);
   };
+  function checkState() {
+    const { tasks } = todoList;
+
+    const filteredItems = tasks.filter(
+      (filteredElement) => filteredElement.done === false,
+    );
+
+    return filteredItems.length;
+  }
+
   return (
     <>
       <header />
@@ -75,7 +85,7 @@ function App() {
             completeHandler={taskStatus}
             taskElements={todoList.tasks}
           />
-          <Footer />
+          <Footer taskNumber={checkState()} />
         </article>
       </main>
     </>
