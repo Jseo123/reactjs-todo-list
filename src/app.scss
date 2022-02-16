@@ -56,7 +56,6 @@ fieldset {
   }
 
   .inputCheck {
-    background: white;
     width: 1.3em;
     height: 1.3em;
     border-radius: 50%;
@@ -73,7 +72,19 @@ fieldset {
 }
 
 .todoListContainer {
-  background-color: white;
   border-radius: 5px;
   padding: 5px;
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 0 4px 2px -2px rgba(128, 128, 128, 0.397);
+}
+
+article > * {
+  background-color: #ffffff;
 }
