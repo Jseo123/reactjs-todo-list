@@ -8,11 +8,9 @@ import "./app.scss";
 function App() {
   const [todoList, setTodoList] = useState({
     tasks: [],
-    tasksCompleted: [],
   });
 
   const addTask = (e) => {
-    if (e.key !== "Enter") return;
     if (e.target.value === "") return; // error msg
     const newTask = {
       id: uuid(),
@@ -21,10 +19,44 @@ function App() {
       isEditing: false,
     };
     setTodoList({
+      ...todoList,
       tasks: [...todoList.tasks, newTask],
     });
     e.target.value = ""; // reset input
   };
+  const taskStatus = (id) => {
+    const { tasks } = todoList;
+    const taskSelected = tasks.find((task) => task.id === id);
+    if (!taskSelected.done) {
+      const taskEdited = { ...taskSelected, done: true };
+      const indexTaskSelected = tasks.indexOf(taskSelected);
+      tasks[indexTaskSelected] = taskEdited;
+
+      setTodoList({
+        ...todoList,
+        tasks: [...tasks],
+      });
+    } else {
+      const taskEdited = { ...taskSelected, done: false };
+      const indexTaskSelected = tasks.indexOf(taskSelected);
+      tasks[indexTaskSelected] = taskEdited;
+
+      setTodoList({
+        ...todoList,
+        tasks: [...tasks],
+      });
+    }
+  };
+
+  function checkState() {
+    const { tasks } = todoList;
+
+    const filteredItems = tasks.filter(
+      (filteredElement) => filteredElement.done === false,
+    );
+
+    return filteredItems.length;
+  }
 
   return (
     <>
@@ -34,9 +66,13 @@ function App() {
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
-        <article className="">
-          <TaskList taskElements={todoList.tasks} />
-          <Footer taskNumber={checkState} />
+        <article className="todoListContainer">
+          <TaskList
+            /* deleteHandler={deleteTask} */
+            completeHandler={taskStatus}
+            taskElements={todoList.tasks}
+          />
+          <Footer taskNumber={checkState()} />
         </article>
       </main>
     </>
