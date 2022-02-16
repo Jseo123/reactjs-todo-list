@@ -33,7 +33,7 @@ function App() {
           <TaskInput handleSubmit={addTask} />
         </article>
         <article>
-          <TaskList tasks={todoList.tasks} />
+          <TaskList taskElements={todoList.tasks} />
         </article>
       </main>
     </>
