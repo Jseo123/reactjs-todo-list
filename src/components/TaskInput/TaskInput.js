@@ -1,9 +1,17 @@
-import React from "react";
+import { React } from "react";
 
-export default function TaskInput() {
+export default function TaskInput({ handleSubmit }) {
+  function test(e) {
+    handleSubmit(e);
+  }
   return (
     <fieldset>
-      <input type="text" name="taskInput" data-testid="create-todo-input" />
+      <input
+        onKeyPress={test}
+        type="text"
+        name="taskInput"
+        data-testid="create-todo-input"
+      />
       <input type="checkbox" name="check" className="inputCheck" />
     </fieldset>
   );
