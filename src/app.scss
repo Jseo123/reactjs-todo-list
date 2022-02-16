@@ -3,7 +3,7 @@
 
 header {
   position: absolute;
-  height: 25vh;
+  min-height: 30vh;
   width: 100vw;
   z-index: -1;
   background-image: linear-gradient(
@@ -18,12 +18,13 @@ header {
   background-repeat: no-repeat;
 }
 main {
+  margin-top: 80px;
   max-width: 80%;
-  height: 35vh;
+  min-height: 35vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   .title {
     letter-spacing: 0.7rem;
     color: white;

@@ -10,7 +10,7 @@ function App() {
     tasksCompleted: [],
   });
 
-  function addTask(e) {
+  const addTask = (e) => {
     if (e.key !== "Enter") return;
     if (e.target.value === "") return; // error msg
     const newTask = {
@@ -22,7 +22,8 @@ function App() {
     setTodoList({
       tasks: [...todoList.tasks, newTask],
     });
-  }
+    e.target.value = ""; // reset input
+  };
   console.log(todoList.tasks);
   return (
     <>
@@ -33,7 +34,11 @@ function App() {
           <TaskInput handleSubmit={addTask} />
         </article>
         <article>
-          <TaskList />
+          <TaskList>
+            {todoList.tasks.map((task) => (
+              <li key={task.id}>{task.text}</li>
+            ))}
+          </TaskList>
         </article>
       </main>
     </>
