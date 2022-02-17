@@ -57,7 +57,7 @@ function App() {
       tasks: [...tasks],
     });
   };
-  const taskEditMode = (id, edited = false, e = undefined) => {
+  const taskEditMode = (id, edited = false, inputValue = undefined) => {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     const indexTaskSelected = tasks.indexOf(taskSelected);
@@ -66,7 +66,7 @@ function App() {
       tasks[indexTaskSelected] = {
         ...taskSelected,
         isEditing: false,
-        text: e.target.value,
+        text: inputValue,
       };
     } else {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };

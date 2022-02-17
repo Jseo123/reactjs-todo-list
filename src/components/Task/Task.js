@@ -17,9 +17,8 @@ export default function Task({
   };
   const handleEdit = (e) => {
     if (e.key === "Enter") {
-      editModeHandler(task.id, true);
+      editModeHandler(task.id, true, e.target.value);
     }
-    editModeHandler(task.id);
   };
 
   const checkTaskMode = () => {
@@ -46,7 +45,11 @@ export default function Task({
     }
     // task added
     return (
-      <button type="button" onClick={handleEdit} className="editBtn">
+      <button
+        type="button"
+        onClick={() => editModeHandler(task.id)}
+        className="editBtn"
+      >
         {task.text}
       </button>
     );
