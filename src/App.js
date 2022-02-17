@@ -79,6 +79,9 @@ export default function App() {
       tasks: [...tasks],
     });
   };
+
+  // stops view from being edited.
+
   // check items left
   const checkState = () => {
     const { tasks } = todoList;
@@ -111,10 +114,10 @@ export default function App() {
         </main>
         <Switch>
           <Route path="/Active">
-            <Active />
+            <Active taskElements={todoList.tasks} />
           </Route>
           <Route path="/Done">
-            <Done />
+            <Done taskElements={todoList.tasks} />
           </Route>
         </Switch>
       </Router>
