@@ -5,7 +5,7 @@ import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
 import "./app.scss";
 
-function App() {
+export default function App() {
   const [todoList, setTodoList] = useState({
     tasks: [],
   });
@@ -107,5 +107,3 @@ function App() {
     </>
   );
 }
-
-export default App;
