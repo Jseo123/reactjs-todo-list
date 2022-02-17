@@ -41,11 +41,14 @@ main {
   padding: 5px;
   border-radius: 5px;
   border: none;
+  .inputCheck {
+    margin-left: 4px;
+  }
 }
 
 fieldset {
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
   border-radius: 5px;

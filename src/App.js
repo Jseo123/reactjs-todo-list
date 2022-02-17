@@ -57,10 +57,26 @@ function App() {
       tasks: [...tasks],
     });
   };
-  const editTask = () => {
-    console.log(1);
+  const taskEditMode = (id, edited = false, e = undefined) => {
+    const { tasks } = todoList;
+    const taskSelected = tasks.find((task) => task.id === id);
+    const indexTaskSelected = tasks.indexOf(taskSelected);
+    if (edited) {
+      // change editing boolean to false, change text for new inputted text
+      tasks[indexTaskSelected] = {
+        ...taskSelected,
+        isEditing: false,
+        text: e.target.value,
+      };
+    } else {
+      tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
+    }
+    setTodoList({
+      tasks: [...tasks],
+    });
   };
-  function checkState() {
+  // check items left
+  const checkState = () => {
     const { tasks } = todoList;
 
     const filteredItems = tasks.filter(
@@ -68,7 +84,7 @@ function App() {
     );
 
     return filteredItems.length;
-  }
+  };
 
   return (
     <>
@@ -80,7 +96,7 @@ function App() {
         </article>
         <article className="todoListContainer">
           <TaskList
-            editHandler={editTask}
+            editModeHandler={taskEditMode}
             deleteHandler={deleteTask}
             completeHandler={taskStatus}
             taskElements={todoList.tasks}
