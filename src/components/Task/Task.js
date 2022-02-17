@@ -1,6 +1,7 @@
 import { React } from "react";
-import "./checkbox.scss";
+import "./Task.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
+import Input from "../Input";
 
 export default function Task({
   editModeHandler,
@@ -25,7 +26,7 @@ export default function Task({
     // edit mode
     if (task.isEditing && !task.done) {
       return (
-        <input
+        <Input
           text-indent="15"
           type="text"
           name="task"
@@ -53,12 +54,13 @@ export default function Task({
   return (
     <li>
       <fieldset className="taskFieldset">
-        <input
+        <Input
           onChange={checkboxAction}
           type="checkbox"
           name="checkTask"
           id="inputCheck"
           className="inputCheck"
+          isDisabled={task.isEditing}
         />
         {checkTaskMode()}
         <button onClick={deleteItem} type="button" className="deleteBtn">

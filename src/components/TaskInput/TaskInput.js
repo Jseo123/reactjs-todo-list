@@ -1,4 +1,5 @@
 import { React } from "react";
+import Input from "../Input";
 
 export default function TaskInput({ handleSubmit }) {
   function handleKeyPress(e) {
@@ -6,13 +7,13 @@ export default function TaskInput({ handleSubmit }) {
   }
   return (
     <fieldset>
-      <input
+      <Input
         type="checkbox"
         disabled="disabled"
         name="check"
         className="inputCheck"
       />
-      <input
+      <Input
         onKeyPress={handleKeyPress}
         type="text"
         name="taskInput"
