@@ -1,5 +1,5 @@
 import React from "react";
-import AlternativeList from "../../components/alternativeList/AlternativeList";
+import AlternativeList from "../../components/AlternativeList/AlternativeList";
 
 export default function Done({ taskElements }) {
   function inactiveCheck() {
