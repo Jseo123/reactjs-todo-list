@@ -26,9 +26,9 @@ export default function Task({
     if (task.isEditing && !task.done) {
       return (
         <Input
-          text-indent="15"
           type="text"
           name="task"
+          id="taskEditing"
           onKeyPress={handleEdit}
           data-testid="todo-item"
           defaultValue={task.text}
@@ -38,7 +38,11 @@ export default function Task({
     // task completed mode
     if (task.done && !task.isEditing) {
       return (
-        <label htmlFor="inputCheck" data-content={task.text}>
+        <label
+          className="checkboxLabel"
+          htmlFor="inputCheck"
+          data-content={task.text}
+        >
           {task.text}
         </label>
       );
