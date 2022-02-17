@@ -41,13 +41,16 @@ main {
   padding: 5px;
   border-radius: 5px;
   border: none;
+  .inputCheck {
+    margin-left: 4px;
+  }
 }
 
 fieldset {
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   border-radius: 5px;
   min-height: 5vh;
 
@@ -59,21 +62,6 @@ fieldset {
       caret-color: #99b1cd;
     }
     cursor: pointer;
-  }
-
-  .inputCheck {
-    width: 1.3em;
-    height: 1.3em;
-    border-radius: 50%;
-    appearance: none;
-    border: 2px solid #eaeaec;
-  }
-  .inputCheck:hover {
-    border: 3px solid variables.$gradient;
-  }
-
-  .inputCheck:checked {
-    background: variables.$gradient;
   }
 }
 

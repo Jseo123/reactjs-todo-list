@@ -1,7 +1,7 @@
 @use "assets/styles/_typography.scss" as fonts;
 @use "assets/styles/_variables.scss" as variables;
 body {
-  background-color: #fafafa;
+  background-color: variables.$gray !important;
   margin: 0;
   font-family: fonts.$mainFont;
   height: 100vh;

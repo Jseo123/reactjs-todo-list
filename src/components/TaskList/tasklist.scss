@@ -17,11 +17,8 @@ ul {
   input {
     text-indent: 10px;
   }
-  .checkTask {
-    &:checked {
-      content: "✔";
-    }
-  }
+
+  //check in mobile version
   &:hover {
     .deleteBtn {
       visibility: visible;

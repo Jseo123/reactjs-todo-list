@@ -1,4 +1,5 @@
 import { React } from "react";
+import Input from "../Input";
 
 export default function TaskInput({ handleSubmit }) {
   function handleKeyPress(e) {
@@ -6,18 +7,18 @@ export default function TaskInput({ handleSubmit }) {
   }
   return (
     <fieldset>
-      <input
+      <Input
+        type="checkbox"
+        disabled="disabled"
+        name="check"
+        className="inputCheck"
+      />
+      <Input
         onKeyPress={handleKeyPress}
         type="text"
         name="taskInput"
         data-testid="create-todo-input"
         placeholder="Introduce the task here!"
-      />
-      <input
-        type="checkbox"
-        disabled="disabled"
-        name="check"
-        className="inputCheck"
       />
     </fieldset>
   );
