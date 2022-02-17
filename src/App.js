@@ -1,11 +1,8 @@
 import { useState, React } from "react";
-import { Switch, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
-import Active from "./pages/Active/Active";
-import Done from "./pages/Done";
 import "./app.scss";
 
 export default function App() {
@@ -107,14 +104,6 @@ export default function App() {
           <Footer taskNumber={checkState()} />
         </article>
       </main>
-      <Switch>
-        <Route path="/Active">
-          <Active />
-        </Route>
-        <Route path="/Done">
-          <Done />
-        </Route>
-      </Switch>
     </>
   );
 }
