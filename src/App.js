@@ -1,5 +1,9 @@
 import { useState, React } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import Active from "./pages/Active/Active";
+import Done from "./pages/Done";
+import "./index.scss";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
@@ -88,22 +92,32 @@ export default function App() {
 
   return (
     <>
-      <header />
-      <main>
-        <h1 className="title">TODO</h1>
-        <article className="createTaskContainer">
-          <TaskInput handleSubmit={addTask} />
-        </article>
-        <article className="todoListContainer">
-          <TaskList
-            editModeHandler={taskEditMode}
-            deleteHandler={deleteTask}
-            completeHandler={taskStatus}
-            taskElements={todoList.tasks}
-          />
-          <Footer taskNumber={checkState()} />
-        </article>
-      </main>
+      <Router>
+        <header />
+        <main>
+          <h1 className="title">TODO</h1>
+          <article className="createTaskContainer">
+            <TaskInput handleSubmit={addTask} />
+          </article>
+          <article className="todoListContainer">
+            <TaskList
+              editModeHandler={taskEditMode}
+              deleteHandler={deleteTask}
+              completeHandler={taskStatus}
+              taskElements={todoList.tasks}
+            />
+            <Footer taskNumber={checkState()} />
+          </article>
+        </main>
+        <Switch>
+          <Route path="/Active">
+            <Active />
+          </Route>
+          <Route path="/Done">
+            <Done />
+          </Route>
+        </Switch>
+      </Router>
     </>
   );
 }

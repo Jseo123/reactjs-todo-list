@@ -1,8 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Active from "./pages/Active/Active";
-import Done from "./pages/Done";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -11,17 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-      <Switch>
-        <Route path="/Active">
-          <Active />
-        </Route>
-        <Route path="/Done">
-          <Done />
-        </Route>
-      </Switch>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById("root"),
 );
