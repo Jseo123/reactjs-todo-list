@@ -1,12 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Pagination() {
   return (
     <>
-      <Link to="/">All</Link>
-      <Link to="/Active">Active</Link>
-      <Link to="/Done">Completed</Link>
+      <NavLink exact to="/" activeClassName="is-active">
+        All
+      </NavLink>
+      <NavLink activeClassName="is-active" to="/Active">
+        Active
+      </NavLink>
+      <NavLink activeClassName="is-active" to="/Done">
+        Completed
+      </NavLink>
     </>
   );
 }

@@ -26,3 +26,8 @@
 .footerCenter > *:hover {
   cursor: pointer;
 }
+
+.is-active {
+  border: 1px solid lightblue;
+  background-color: lightblue;
+}
