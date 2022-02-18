@@ -6,6 +6,7 @@ export default function Input({
   className,
   id,
   name,
+  isCompleted = false,
   handleChange = null,
   isDisabled = false,
   ...props
@@ -15,6 +16,7 @@ export default function Input({
       type={type}
       className={className}
       id={id}
+      checked={isCompleted}
       name={name}
       onChange={handleChange}
       disabled={isDisabled}

@@ -66,6 +66,7 @@ export default function Task({
           type="checkbox"
           name="checkTask"
           id="inputCheck"
+          isCompleted={task.done}
           className="inputCheck"
           isDisabled={task.isEditing}
         />

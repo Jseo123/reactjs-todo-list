@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, useEffect, React } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import Active from "./pages/Active/Active";
@@ -9,11 +9,20 @@ import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
 import "./app.scss";
 
+function loadLocalStorage() {
+  if (!localStorage.getItem("reactjs-todo-list")) {
+    return [];
+  }
+  return JSON.parse(localStorage.getItem("reactjs-todo-list"));
+}
 export default function App() {
   const [todoList, setTodoList] = useState({
-    tasks: [],
+    tasks: loadLocalStorage(),
   });
-
+  useEffect(() => {
+    // guardar datos en localStorage
+    localStorage.setItem("reactjs-todo-list", JSON.stringify(todoList.tasks));
+  });
   const addTask = (e) => {
     if (e.target.value === "") return; // error msg
     const newTask = {
