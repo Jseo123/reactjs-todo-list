@@ -6,7 +6,7 @@ import "./footer.scss";
 
 export default function Footer({ taskNumber, handleClear }) {
   return (
-    <footer>
+    <footer data-testid="app-footer">
       <div className="counter">
         <Counter taskNumber={taskNumber} />
       </div>

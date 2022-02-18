@@ -5,7 +5,29 @@ li {
   width: 100%;
 }
 
-ul {
+.todosList {
   margin: 0;
   padding: 0;
+  height: 90%;
+  overflow: scroll;
+}
+.emptyListFieldset {
+  border: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  .svgIcon {
+    height: auto;
+
+    width: 50%;
+  }
+  h5 {
+    bottom: 0;
+    left: 30px;
+    font-size: 15px;
+    font-weight: 600;
+  }
 }

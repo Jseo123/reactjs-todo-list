@@ -30,7 +30,7 @@ export default function Task({
           name="task"
           id="taskEditing"
           onKeyPress={handleEdit}
-          data-testid="todo-item"
+          data-testid="todo-item-input"
           defaultValue={task.text}
         />
       );
@@ -59,7 +59,7 @@ export default function Task({
     );
   };
   return (
-    <li>
+    <li data-testid="todo-item">
       <fieldset className="taskFieldset">
         <Input
           onChange={checkboxAction}
@@ -69,9 +69,15 @@ export default function Task({
           isCompleted={task.done}
           className="inputCheck"
           isDisabled={task.isEditing}
+          data-testid="todo-item-checkbox"
         />
         {checkTaskMode()}
-        <button onClick={deleteItem} type="button" className="deleteBtn">
+        <button
+          onClick={deleteItem}
+          type="button"
+          data-testid="todo-item-delete-button"
+          className="deleteBtn"
+        >
           <img src={deleteIcon} alt="icon delete" />
         </button>
       </fieldset>

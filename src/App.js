@@ -101,8 +101,6 @@ export default function App() {
     });
   };
 
-  // todoList.task
-
   // check items left
   const checkState = () => {
     const { tasks } = todoList;
@@ -113,14 +111,14 @@ export default function App() {
 
     return filteredItems.length;
   };
-
-  const arrayTasksDone = () => {
+  // filter array of task to done
+  const filterTasksDone = () => {
     return todoList.tasks.filter(
       (filteredElement) => filteredElement.done === true,
     );
   };
-
-  const arrayTasksActive = () => {
+  // filter array of task to active
+  const filterTasksActive = () => {
     return todoList.tasks.filter(
       (filteredElement) => filteredElement.done !== true,
     );
@@ -140,7 +138,9 @@ export default function App() {
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
-              taskElements={arrayTasksActive()}
+              taskElements={filterTasksActive()}
+              filterSearch
+              emptyFilterMsg={"There's no active tasks"}
             />
           </Route>
           <Route path="/Done">
@@ -148,7 +148,9 @@ export default function App() {
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
-              taskElements={arrayTasksDone()}
+              taskElements={filterTasksDone()}
+              emptyFilterMsg={"Ups, there's no completed tasks"}
+              filterSearch
             />
           </Route>
           <Route exact path="/">

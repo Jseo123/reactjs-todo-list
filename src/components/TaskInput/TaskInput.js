@@ -12,6 +12,7 @@ export default function TaskInput({ handleSubmit }) {
         disabled="disabled"
         name="check"
         className="inputCheck"
+        data-testid="todo-item-checkbox"
       />
       <Input
         // eslint-disable-next-line react/jsx-no-bind

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
   justify-content: space-around;
   min-width: 50%;
 }
@@ -16,13 +16,22 @@
   align-items: center;
 }
 
-.Clear {
-  display: flex;
-  color: #a7a6ac;
-  font-size: xx-small;
-  justify-self: flex-end;
-}
-
 .footerCenter > *:hover {
   cursor: pointer;
+}
+.link {
+  text-decoration: none;
+
+  color: red;
+  &:hover {
+    text-decoration: none;
+
+    transition: 0.2s;
+  }
+}
+.is-active {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid lightblue;
+  background-color: lightblue;
 }
