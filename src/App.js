@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
 import "./app.scss";
 
+let toogled = false;
+
 function loadLocalStorage() {
   if (!localStorage.getItem("reactjs-todo-list")) {
     return [];
@@ -124,11 +126,25 @@ export default function App() {
     );
   };
 
+  const handleToogle = () => {
+    const body = document.body;
+    if (!toogled) {
+      toogled = true;
+      body.classList.remove("body-white");
+      body.classList.add("dark");
+    } else {
+      toogled = false;
+      body.classList.remove("dark");
+      body.classList.add("body-white");
+    }
+    return true;
+  };
+
   return (
     <>
       <header />
       <main>
-        <MainHeader />
+        <MainHeader handleToogle={handleToogle} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>

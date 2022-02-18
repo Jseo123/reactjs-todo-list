@@ -1,10 +1,12 @@
 @use "assets/styles/_typography.scss" as fonts;
 @use "assets/styles/_variables.scss" as variables;
-body {
+@use "./app" as app;
+.body-white {
   background-color: variables.$gray !important;
   margin: 0;
   font-family: fonts.$mainFont;
   height: 100vh;
+  @include app.light;
 }
 #root {
   display: flex;

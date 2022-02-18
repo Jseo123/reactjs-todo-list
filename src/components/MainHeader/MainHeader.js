@@ -1,10 +1,12 @@
 import { React } from "react";
 
-export default function MainHeader() {
+export default function MainHeader({ handleToogle }) {
   return (
     <div className="mainHeader">
       <h1 className="title">TODO</h1>
-      <span>&#9789;</span>
+      <button type="button" data-testid="toggle-theme" onClick={handleToogle}>
+        <span>&#9789;</span>
+      </button>
     </div>
   );
 }

@@ -1,8 +1,6 @@
-@use "assets/styles/_typography.scss" as fonts;
-@use "assets/styles/_variables.scss" as variables;
-@use "assets/styles/_dark.scss" as dark;
+.dark {
+  background: rgba(0, 0, 0, 0.753);
 
-@mixin light {
   header {
     position: absolute;
     min-height: 30vh;
@@ -10,15 +8,16 @@
     z-index: -1;
     background-image: linear-gradient(
         to left,
-        rgba(245, 246, 252, 0.52),
-        rgba(117, 19, 93, 0.73)
+        rgba(55, 2, 71, 0.52),
+        rgba(37, 1, 28, 0.73)
       ),
-      url("assets/img/header-background.jpeg");
+      url("../img/header-background.jpeg");
     background-size: auto;
     background-position-x: center;
     background-position-y: 60%;
     background-repeat: no-repeat;
   }
+
   main {
     margin-top: 80px;
     width: 40%;
@@ -38,7 +37,7 @@
   }
 
   .createTaskContainer {
-    background-color: white;
+    background-color: #353131;
     margin: 15px 0;
     width: 100%;
     padding: 5px;
@@ -60,6 +59,7 @@
     input {
       width: 80%;
       border: none;
+      background-color: #353131;
       &:focus {
         outline: none;
         caret-color: #99b1cd;
@@ -74,7 +74,7 @@
     padding: 10px;
     height: 35vh;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #383838;
   }
 
   footer {
@@ -90,7 +90,7 @@
   }
 
   article > * {
-    background-color: #ffffff;
+    background-color: #353131;
   }
 
   .mainHeader {
