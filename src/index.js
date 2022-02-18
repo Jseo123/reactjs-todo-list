@@ -1,22 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
       <Switch>
         <Route path="/Active">
           {/* deleteHandler, completeHandler, editModeHandler */}
           <App />
         </Route>
         <Route path="/Done">
+          <App />
+        </Route>
+        <Route path="/">
           <App />
         </Route>
       </Switch>
