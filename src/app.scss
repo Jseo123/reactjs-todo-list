@@ -85,6 +85,18 @@ article > * {
   background-color: #ffffff;
 }
 
+.mainHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #ffffff;
+  font-size: xx-large;
+  span: {
+    font-weight: bolder;
+  }
+}
+
 @media only screen and (max-width: 600px) {
   main {
     min-width: 80%;

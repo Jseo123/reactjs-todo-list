@@ -5,6 +5,7 @@ import "./index.scss";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
+import MainHeader from "./components/MainHeader";
 import "./app.scss";
 
 function loadLocalStorage() {
@@ -129,7 +130,7 @@ export default function App() {
     <>
       <header />
       <main>
-        <h1 className="title">TODO</h1>
+        <MainHeader />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
