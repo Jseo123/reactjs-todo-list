@@ -1,8 +1,5 @@
 import { useState, useEffect, React } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import Active from "./pages/Active/Active";
-import Done from "./pages/Done";
 import "./index.scss";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
@@ -102,6 +99,8 @@ export default function App() {
     });
   };
 
+  // todoList.task
+
   // check items left
   const checkState = () => {
     const { tasks } = todoList;
@@ -113,38 +112,46 @@ export default function App() {
     return filteredItems.length;
   };
 
+  function checkRouting() {
+    const path = window.location.pathname;
+    let filteredItems = todoList.tasks;
+    if (path === "/Active") {
+      filteredItems = filteredItems.filter(
+        (filteredElement) => filteredElement.done === false,
+      );
+    } else if (path === "/Done") {
+      filteredItems = filteredItems.filter(
+        (filteredElement) => filteredElement.done === true,
+      );
+    } else {
+      filteredItems = todoList.tasks;
+    }
+    console.log(filteredItems);
+    return filteredItems;
+  }
+
   return (
     <>
-      <Router>
-        <header />
-        <main>
-          <h1 className="title">TODO</h1>
-          <article className="createTaskContainer">
-            <TaskInput handleSubmit={addTask} />
-          </article>
-          <article className="todoListContainer">
-            <TaskList
-              editModeHandler={taskEditMode}
-              deleteHandler={deleteTask}
-              completeHandler={taskCompleted}
-              taskElements={todoList.tasks}
-            />
-            <Footer
-              taskNumber={checkState()}
-              handleClear={clearCompletedTasks}
-            />
-          </article>
-        </main>
-        <Switch>
-          <Route path="/Active">
-            {/* deleteHandler, completeHandler, editModeHandler */}
-            <Active taskElements={todoList.tasks} />
-          </Route>
-          <Route path="/Done">
-            <Done taskElements={todoList.tasks} />
-          </Route>
-        </Switch>
-      </Router>
+      <header />
+      <main>
+        <h1 className="title">TODO</h1>
+        <article className="createTaskContainer">
+          <TaskInput handleSubmit={addTask} />
+        </article>
+        <article className="todoListContainer">
+          <TaskList
+            editModeHandler={taskEditMode}
+            deleteHandler={deleteTask}
+            completeHandler={taskCompleted}
+            taskElements={checkRouting()}
+          />
+          <Footer
+            taskNumber={checkState()}
+            handleClear={clearCompletedTasks}
+            handlePath={checkRouting}
+          />
+        </article>
+      </main>
     </>
   );
 }
