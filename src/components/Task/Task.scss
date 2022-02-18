@@ -2,9 +2,12 @@
 @use "../../assets/styles/variables" as variables;
 
 .checkboxLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
   position: relative;
   cursor: pointer;
   font-size: 1.5em;
+  max-width: 70%;
   font-weight: 600;
   padding: 0 0.25em 0;
   user-select: none;
@@ -20,8 +23,11 @@
   }
 }
 .editBtn {
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
   border: none;
+  max-width: 70%;
   background-color: inherit;
   font-size: 1.5em;
   padding: 0 0.25em 0;
@@ -29,14 +35,15 @@
   margin-bottom: 0.5rem;
 }
 #taskEditing {
+  max-width: 70%;
   text-indent: 0px;
   font-size: 1.4em;
   padding: 0 0.25em 0;
   font-weight: 600;
-  width: 200px;
   border: 1px solid lightcoral;
 }
-.deleteBtn {
+.deleteBtn,
+.btnWithIcon {
   border: none;
   visibility: hidden;
   background-color: inherit;
@@ -54,14 +61,13 @@
 .taskFieldset {
   border-radius: 0;
   border-bottom: 1px solid #f0eff2;
+  white-space: nowrap;
   position: relative;
-  input {
-    text-indent: 10px;
-  }
 
+  text-overflow: ellipsis;
   //check in mobile version
   &:hover {
-    .deleteBtn {
+    .btnWithIcon {
       visibility: visible;
     }
   }

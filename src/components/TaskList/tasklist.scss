@@ -9,7 +9,7 @@ li {
   margin: 0;
   padding: 0;
   height: 90%;
-  overflow: scroll;
+  overflow-y: auto;
 }
 .emptyListFieldset {
   border: none;
@@ -22,7 +22,7 @@ li {
   .svgIcon {
     height: auto;
 
-    width: 50%;
+    width: 40%;
   }
   h5 {
     bottom: 0;

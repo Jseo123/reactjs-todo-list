@@ -54,9 +54,10 @@ fieldset {
   flex-direction: row;
   border-radius: 5px;
   min-height: 5vh;
-
-  input {
+  .createTaskInput {
     width: 80%;
+  }
+  input {
     border: none;
     &:focus {
       outline: none;
@@ -64,13 +65,18 @@ fieldset {
     }
     cursor: pointer;
   }
+  .formInputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
 }
 
 .todoListContainer {
   position: relative;
   border-radius: 5px;
   padding: 10px;
-  height: 35vh;
+  height: 40vh;
   width: 100%;
   background-color: #ffffff;
 }

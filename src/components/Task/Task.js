@@ -1,6 +1,7 @@
 import { React } from "react";
 import "./Task.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
+import editIcon from "../../assets/img/editIcon.svg";
 import Input from "../Input";
 
 export default function Task({
@@ -16,7 +17,7 @@ export default function Task({
     deleteHandler(task.id);
   };
   const handleEdit = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.target.value !== "") {
       editModeHandler(task.id, true, e.target.value);
     }
   };
@@ -40,7 +41,7 @@ export default function Task({
       return (
         <label
           className="checkboxLabel"
-          htmlFor="inputCheck"
+          htmlFor={`inputCheck${task.id}`}
           data-content={task.text}
         >
           {task.text}
@@ -65,21 +66,30 @@ export default function Task({
           onChange={checkboxAction}
           type="checkbox"
           name="checkTask"
-          id="inputCheck"
+          id={`inputCheck${task.id}`}
           isCompleted={task.done}
           className="inputCheck"
           isDisabled={task.isEditing}
           data-testid="todo-item-checkbox"
         />
         {checkTaskMode()}
-        <button
-          onClick={deleteItem}
-          type="button"
-          data-testid="todo-item-delete-button"
-          className="deleteBtn"
-        >
-          <img src={deleteIcon} alt="icon delete" />
-        </button>
+        <div className="actionBtnsContainer">
+          <button
+            type="button"
+            className="btnWithIcon"
+            onClick={() => editModeHandler(task.id)}
+          >
+            <img src={editIcon} alt="pencil icon" />
+          </button>
+          <button
+            onClick={deleteItem}
+            type="button"
+            data-testid="todo-item-delete-button"
+            className="deleteBtn btnWithIcon"
+          >
+            <img src={deleteIcon} alt="icon delete" />
+          </button>
+        </div>
       </fieldset>
     </li>
   );
