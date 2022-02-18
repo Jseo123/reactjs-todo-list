@@ -1,0 +1,11 @@
+.clearBtn {
+  background-color: inherit;
+  border: none;
+  &:active {
+    transform: translateY(4px);
+  }
+  &:hover {
+    opacity: 0.5;
+    transition: 0.3s;
+  }
+}

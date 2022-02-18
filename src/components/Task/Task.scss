@@ -36,3 +36,33 @@
   width: 200px;
   border: 1px solid lightcoral;
 }
+.deleteBtn {
+  border: none;
+  visibility: hidden;
+  background-color: inherit;
+  img {
+    width: 20px;
+  }
+  &:active {
+    transform: translateY(4px);
+  }
+  &:hover {
+    opacity: 0.5;
+    transition: 0.3s;
+  }
+}
+.taskFieldset {
+  border-radius: 0;
+  border-bottom: 1px solid #f0eff2;
+  position: relative;
+  input {
+    text-indent: 10px;
+  }
+
+  //check in mobile version
+  &:hover {
+    .deleteBtn {
+      visibility: visible;
+    }
+  }
+}

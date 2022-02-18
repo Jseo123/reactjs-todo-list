@@ -19,10 +19,12 @@ export default function App() {
   const [todoList, setTodoList] = useState({
     tasks: loadLocalStorage(),
   });
+
+  // update localStorage
   useEffect(() => {
-    // guardar datos en localStorage
     localStorage.setItem("reactjs-todo-list", JSON.stringify(todoList.tasks));
   });
+
   const addTask = (e) => {
     if (e.target.value === "") return; // error msg
     const newTask = {
@@ -37,6 +39,7 @@ export default function App() {
     });
     e.target.value = ""; // reset input
   };
+  // task completed checked / unchecked
   const taskCompleted = (id) => {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
@@ -60,7 +63,7 @@ export default function App() {
       });
     }
   };
-
+  // delete task
   const deleteTask = (id) => {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
@@ -70,6 +73,7 @@ export default function App() {
       tasks: [...tasks],
     });
   };
+  // edit task and enter edited
   const taskEditMode = (id, edited = false, inputValue = undefined) => {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
@@ -88,8 +92,15 @@ export default function App() {
       tasks: [...tasks],
     });
   };
-
-  // stops view from being edited.
+  // clear completed tasks
+  const clearCompletedTasks = () => {
+    const itemsActive = todoList.tasks.filter(
+      (filteredElement) => filteredElement.done !== true,
+    );
+    setTodoList({
+      tasks: itemsActive,
+    });
+  };
 
   // check items left
   const checkState = () => {
@@ -118,7 +129,10 @@ export default function App() {
               completeHandler={taskCompleted}
               taskElements={todoList.tasks}
             />
-            <Footer taskNumber={checkState()} />
+            <Footer
+              taskNumber={checkState()}
+              handleClear={clearCompletedTasks}
+            />
           </article>
         </main>
         <Switch>
