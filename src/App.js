@@ -1,4 +1,5 @@
 import { useState, useEffect, React } from "react";
+import { Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import "./index.scss";
 import TaskInput from "./components/TaskInput";
@@ -112,23 +113,17 @@ export default function App() {
     return filteredItems.length;
   };
 
-  function checkRouting() {
-    const path = window.location.pathname;
-    let filteredItems = todoList.tasks;
-    if (path === "/Active") {
-      filteredItems = filteredItems.filter(
-        (filteredElement) => filteredElement.done === false,
-      );
-    } else if (path === "/Done") {
-      filteredItems = filteredItems.filter(
-        (filteredElement) => filteredElement.done === true,
-      );
-    } else {
-      filteredItems = todoList.tasks;
-    }
-    console.log(filteredItems);
-    return filteredItems;
-  }
+  const arrayTasksDone = () => {
+    return todoList.tasks.filter(
+      (filteredElement) => filteredElement.done === true,
+    );
+  };
+
+  const arrayTasksActive = () => {
+    return todoList.tasks.filter(
+      (filteredElement) => filteredElement.done !== true,
+    );
+  };
 
   return (
     <>
@@ -139,17 +134,31 @@ export default function App() {
           <TaskInput handleSubmit={addTask} />
         </article>
         <article className="todoListContainer">
-          <TaskList
-            editModeHandler={taskEditMode}
-            deleteHandler={deleteTask}
-            completeHandler={taskCompleted}
-            taskElements={checkRouting()}
-          />
-          <Footer
-            taskNumber={checkState()}
-            handleClear={clearCompletedTasks}
-            handlePath={checkRouting}
-          />
+          <Route path="/Active">
+            <TaskList
+              editModeHandler={taskEditMode}
+              deleteHandler={deleteTask}
+              completeHandler={taskCompleted}
+              taskElements={arrayTasksActive()}
+            />
+          </Route>
+          <Route path="/Done">
+            <TaskList
+              editModeHandler={taskEditMode}
+              deleteHandler={deleteTask}
+              completeHandler={taskCompleted}
+              taskElements={arrayTasksDone()}
+            />
+          </Route>
+          <Route exact path="/">
+            <TaskList
+              editModeHandler={taskEditMode}
+              deleteHandler={deleteTask}
+              completeHandler={taskCompleted}
+              taskElements={todoList.tasks}
+            />
+          </Route>
+          <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} />
         </article>
       </main>
     </>
