@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 export default function Pagination() {
   return (
     <>
-      <NavLink exact to="/" activeClassName="is-active">
+      <NavLink className="link" exact to="/" activeClassName="is-active">
         All
       </NavLink>
-      <NavLink activeClassName="is-active" to="/Active">
+      <NavLink className="link" activeClassName="is-active" to="/Active">
         Active
       </NavLink>
-      <NavLink activeClassName="is-active" to="/Done">
+      <NavLink className="link" activeClassName="is-active" to="/Done">
         Completed
       </NavLink>
     </>
