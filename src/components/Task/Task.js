@@ -2,7 +2,9 @@ import { React } from "react";
 import "./Task.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
 import editIcon from "../../assets/img/editIcon.svg";
+import doneIcon from "../../assets/img/doneIcon.svg";
 import Input from "../Input";
+import Button from "../Button";
 
 export default function Task({
   editModeHandler,
@@ -20,6 +22,25 @@ export default function Task({
     if (e.key === "Enter" && e.target.value !== "") {
       editModeHandler(task.id, true, e.target.value);
     }
+  };
+
+  const manageEditIcon = (editingMode) => {
+    if (editingMode) {
+      return (
+        <Button className="btnWithIcon">
+          <img src={doneIcon} alt="done icon" />
+        </Button>
+      );
+    }
+    return (
+      <Button
+        isDisabled={task.done}
+        className="btnWithIcon"
+        handleClick={() => editModeHandler(task.id)}
+      >
+        <img src={editIcon} alt="edit icon" />
+      </Button>
+    );
   };
 
   const checkTaskMode = () => {
@@ -50,13 +71,9 @@ export default function Task({
     }
     // task added
     return (
-      <button
-        type="button"
-        onClick={() => editModeHandler(task.id)}
-        className="editBtn"
-      >
+      <Button handleClick={() => editModeHandler(task.id)} className="editBtn">
         {task.text}
-      </button>
+      </Button>
     );
   };
   return (
@@ -74,21 +91,15 @@ export default function Task({
         />
         {checkTaskMode()}
         <div className="actionBtnsContainer">
-          <button
-            type="button"
-            className="btnWithIcon"
-            onClick={() => editModeHandler(task.id)}
-          >
-            <img src={editIcon} alt="pencil icon" />
-          </button>
-          <button
-            onClick={deleteItem}
-            type="button"
+          {manageEditIcon(task.isEditing)}
+
+          <Button
+            handleClick={deleteItem}
             data-testid="todo-item-delete-button"
             className="deleteBtn btnWithIcon"
           >
             <img src={deleteIcon} alt="icon delete" />
-          </button>
+          </Button>
         </div>
       </fieldset>
     </li>
