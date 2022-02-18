@@ -11,6 +11,6 @@ export default function Active({ taskElements }) {
     );
     return filteredItems;
   }
-
+  // podríamos llamar a tasklist y así, asignarle todas las funcionalidades por parametro, y nos ahorramos 1 componente
   return <AlternativeList taskElements={activeCheck()} />;
 }

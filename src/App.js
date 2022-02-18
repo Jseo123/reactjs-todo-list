@@ -28,7 +28,7 @@ export default function App() {
     });
     e.target.value = ""; // reset input
   };
-  const taskStatus = (id) => {
+  const taskCompleted = (id) => {
     const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
@@ -106,7 +106,7 @@ export default function App() {
             <TaskList
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
-              completeHandler={taskStatus}
+              completeHandler={taskCompleted}
               taskElements={todoList.tasks}
             />
             <Footer taskNumber={checkState()} />
@@ -114,6 +114,7 @@ export default function App() {
         </main>
         <Switch>
           <Route path="/Active">
+            {/* deleteHandler, completeHandler, editModeHandler */}
             <Active taskElements={todoList.tasks} />
           </Route>
           <Route path="/Done">
