@@ -16,7 +16,7 @@ export default function Input({
       type={type}
       className={className}
       id={id}
-      checked={isCompleted}
+      defaultChecked={isCompleted}
       name={name}
       onChange={handleChange}
       disabled={isDisabled}

@@ -1,19 +1,27 @@
 import React from "react";
 import Task from "../Task";
 import "./tasklist.scss";
+import emptyTasklistImg from "../../assets/img/emptyTasklist.svg";
 
 export default function TaskList({
   taskElements,
   completeHandler,
   deleteHandler,
   editModeHandler,
+  filterSearch = false,
+  emptyFilterMsg = "",
 }) {
   if (taskElements.length === 0) {
     return (
-      <fieldset className="taskFieldset">
-        <ul className="todosList" data-testid="todos-list">
-          <h5 className="emptyListTitle">Add some task to start!</h5>
-        </ul>
+      <fieldset className="taskFieldset emptyListFieldset">
+        <h5 className="emptyListTitle">
+          {filterSearch ? emptyFilterMsg : "You don't have tasks!"}
+        </h5>
+        <img
+          className="svgIcon"
+          src={emptyTasklistImg}
+          alt="svg icon empty task"
+        />
       </fieldset>
     );
   }
