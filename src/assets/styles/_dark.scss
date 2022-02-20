@@ -1,5 +1,14 @@
+@use "_variables" as variables;
+@use "_typography" as fonts;
+
 .dark {
   background: rgba(0, 0, 0, 0.753);
+  margin: 0;
+  font-family: fonts.$mainFont;
+  height: 100vh;
+  .formInputs {
+    width: 100%;
+  }
 
   header {
     position: absolute;
@@ -8,8 +17,8 @@
     z-index: -1;
     background-image: linear-gradient(
         to left,
-        rgba(55, 2, 71, 0.52),
-        rgba(37, 1, 28, 0.73)
+        rgba(245, 246, 252, 0.52),
+        rgba(117, 19, 93, 0.73)
       ),
       url("../img/header-background.jpeg");
     background-size: auto;
@@ -17,7 +26,6 @@
     background-position-y: 60%;
     background-repeat: no-repeat;
   }
-
   main {
     margin-top: 80px;
     width: 40%;
@@ -37,13 +45,14 @@
   }
 
   .createTaskContainer {
-    background-color: #353131;
+    background-color: white;
     margin: 15px 0;
     width: 100%;
     padding: 5px;
     border-radius: 5px;
     border: none;
     .inputCheck {
+      border: solid black 1px;
       margin-left: 4px;
     }
   }
@@ -55,16 +64,20 @@
     flex-direction: row;
     border-radius: 5px;
     min-height: 5vh;
-
-    input {
+    .createTaskInput {
       width: 80%;
+    }
+    input {
       border: none;
-      background-color: #353131;
       &:focus {
         outline: none;
         caret-color: #99b1cd;
       }
-      cursor: pointer;
+    }
+    .formInputs {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
   }
 
@@ -72,9 +85,12 @@
     position: relative;
     border-radius: 5px;
     padding: 10px;
-    height: 35vh;
+    height: 40vh;
     width: 100%;
-    background-color: #383838;
+    background-color: #ffffff;
+    .inputCheck {
+      border: solid black 1px;
+    }
   }
 
   footer {
@@ -90,7 +106,7 @@
   }
 
   article > * {
-    background-color: #353131;
+    background-color: #ffffff;
   }
 
   .mainHeader {
@@ -115,9 +131,35 @@
     }
   }
 
-  @media only screen and (max-width: 600px) {
-    main {
-      width: 80%;
+  i {
+    list-style: none;
+    width: 100%;
+  }
+
+  .todosList {
+    margin: 0;
+    padding: 0;
+    height: 90%;
+    overflow-y: auto;
+  }
+  .emptyListFieldset {
+    border: none;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    .svgIcon {
+      height: auto;
+
+      width: 40%;
+    }
+    h5 {
+      bottom: 0;
+      left: 30px;
+      font-size: 15px;
+      font-weight: 600;
     }
   }
 }
