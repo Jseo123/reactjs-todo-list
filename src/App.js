@@ -150,7 +150,7 @@ export default function App() {
       body.classList.remove("dark");
       body.classList.add("body-white");
     }
-    return true;
+    return body.getAttribute("class");
   };
 
   return (
