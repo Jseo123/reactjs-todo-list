@@ -5,7 +5,10 @@ import "./index.scss";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
+import MainHeader from "./components/MainHeader";
 import "./app.scss";
+
+let toogled = false;
 
 function loadLocalStorage() {
   if (!localStorage.getItem("reactjs-todo-list")) {
@@ -24,7 +27,9 @@ export default function App() {
   });
 
   const addTask = (e) => {
-    if (e.target.value === "") return; // error msg
+    if (e.target.value === "") {
+      return console.log("Please enter error message");
+    }
     const newTask = {
       id: uuid(),
       text: e.target.value,
@@ -36,7 +41,9 @@ export default function App() {
       tasks: [...todoList.tasks, newTask],
     });
     e.target.value = ""; // reset input
+    return true;
   };
+
   // task completed checked / unchecked
   const taskCompleted = (id) => {
     const { tasks } = todoList;
@@ -123,11 +130,25 @@ export default function App() {
     );
   };
 
+  const handleToogle = () => {
+    const body = document.body;
+    if (!toogled) {
+      toogled = true;
+      body.classList.remove("body-white");
+      body.classList.add("dark");
+    } else {
+      toogled = false;
+      body.classList.remove("dark");
+      body.classList.add("body-white");
+    }
+    return true;
+  };
+
   return (
     <>
       <header />
       <main>
-        <h1 className="title">TODO</h1>
+        <MainHeader handleToogle={handleToogle} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
