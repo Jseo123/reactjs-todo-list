@@ -2,8 +2,21 @@
 @use "_typography" as fonts;
 
 .dark {
+  .clearBtn {
+    color: rgb(184, 184, 184);
+  }
+
+  a {
+    color: rgb(184, 184, 184);
+  }
+
+  .editBtn {
+    color: rgb(184, 184, 184);
+  }
+
   input {
     background-color: rgb(78, 76, 76);
+    color: white;
   }
 
   background: rgba(0, 0, 0, 0.753);
@@ -92,9 +105,6 @@
     height: 40vh;
     width: 100%;
     background-color: rgb(78, 76, 76);
-    .inputCheck {
-      border: solid black 1px;
-    }
   }
 
   footer {
@@ -164,6 +174,49 @@
       left: 30px;
       font-size: 15px;
       font-weight: 600;
+    }
+  }
+
+  .inputCheck {
+    position: relative;
+    width: 1.5em;
+    height: 1.5em;
+    color: variables.$black;
+    border: 1px solid variables.$checkboxGray;
+    border-radius: 50px;
+    appearance: none;
+    outline: 0;
+    cursor: pointer;
+    transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1);
+    &::before {
+      position: absolute;
+      content: "";
+      display: block;
+      top: 2px;
+      left: 7px;
+      width: 8px;
+      height: 14px;
+      border-style: solid;
+      border-color: variables.$white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      opacity: 0;
+    }
+
+    &:checked {
+      color: variables.$white;
+      border-color: #ffffff;
+      background: linear-gradient(
+        to left,
+        rgba(216, 166, 226, 0.52),
+        rgba(77, 7, 59, 0.73)
+      );
+      &::before {
+        opacity: 1;
+      }
+      ~ label::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
     }
   }
 }
