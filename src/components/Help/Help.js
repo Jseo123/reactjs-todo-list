@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { motion } from 'framer-motion/dist/framer-motion'
 import bookIcon from "../../assets/img/bookIcon.png"
 import cancelIcon from "../../assets/img/deleteIcon.png";
 import Button from "../Button"
@@ -11,13 +12,12 @@ export default function Help() {
     }
     return (
         <>
-            <Button className="helpBtn btnWithIcon" handleClick={openModal}>
+            <motion.Button initial={{ y: -20 }} animate={{ y: 0 }} transition={{ repeat: Infinity, duration: 2 }} className="helpBtn btnWithIcon" handleClick={openModal}>
                 <img className="bookIcon" src={bookIcon} alt="help icon" />
 
-            </Button>
+            </motion.Button>
             {helpModal && <ModalWindow handleModal={openModal} />}
         </>
-
     );
 }
 
@@ -49,7 +49,7 @@ function ModalWindow({ handleModal }) {
     const markupInputTask = () => {
         return (
 
-            <div className="markupInput" />
+            <motion.div initial={{ height: 0, x: 300 }} animate={{ height: "6%", x: 0 }} className="markupInput" />
         )
     }
     const modalThirdSection = () => {
@@ -67,22 +67,15 @@ function ModalWindow({ handleModal }) {
 
     }
     const markupTaskList = () => {
-        return <div className="markupTaskList" />
+        return <motion.div initial={{ height: 0, x: 300 }} animate={{ height: "40%", x: 0 }} className="markupTaskList" />
     }
     const [modalSection, setModalSection] = useState({
         section: [modalFirstSection, modalSecondSection, modalThirdSection],
         position: 0
     });
 
-    const handleContinue = (index = null) => {
+    const handleContinue = () => {
         const { position } = modalSection
-        if (index === Number) {
-            setModalSection({
-                ...modalSection,
-                position: index
-            })
-            return;
-        }
         setModalSection({
             ...modalSection,
             position: position + 1
