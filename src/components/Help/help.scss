@@ -26,18 +26,41 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  bottom: 0px;
-  width: 50%;
+  top: 150px;
+  right: 50px;
+  width: 20%;
   border-radius: 5px;
   padding: 5px;
   background-color: white;
   z-index: 5;
-
+  .nextSectionBtn {
+    align-self: center;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: lightblue;
+  }
   .deleteIcon {
     position: absolute;
     right: 10px;
     width: 20px;
   }
+}
+
+// marks for tutorial
+.markupInput {
+  position: absolute;
+  top: 150px;
+  background-color: white;
+  width: 40%;
+  height: 6%;
+}
+.markupTaskList {
+  position: absolute;
+  top: 220px;
+  background-color: white;
+  width: 40%;
+  height: 40%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -47,5 +70,18 @@
     .bookIcon {
       width: 60px;
     }
+  }
+  .markupInput {
+    width: 70%;
+  }
+  .markupTaskList {
+    width: 70%;
+  }
+}
+@media (max-width: 900px) {
+  .modalWindow {
+    width: 100%;
+    top: 580px;
+    right: 0px;
   }
 }
