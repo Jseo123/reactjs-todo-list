@@ -1,9 +1,17 @@
 import { React } from "react";
+import { motion } from 'framer-motion/dist/framer-motion'
 
 export default function MainHeader({ handleToogle }) {
+
   return (
     <div className="mainHeader">
-      <h1 className="title">TODO</h1>
+      <motion.h1
+        initial={{ opacity: 0 }}
+        transition={{ type: "spring", stiffness: 3, duration: 1.5 }}
+        animate={{ opacity: 1 }}
+        className="title">
+        TODO
+      </motion.h1>
       <button
         id="toogle"
         type="button"
@@ -15,5 +23,3 @@ export default function MainHeader({ handleToogle }) {
     </div>
   );
 }
-
-// &#9789;
