@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useRef } from "react";
 import "./Task.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
 import editIcon from "../../assets/img/editIcon.svg";
@@ -12,6 +12,7 @@ export default function Task({
   checkboxHandler,
   deleteHandler,
 }) {
+  const todoInputRef = useRef(null);
   const checkboxAction = () => {
     checkboxHandler(task.id);
   };
@@ -19,15 +20,16 @@ export default function Task({
     deleteHandler(task.id);
   };
   const handleEdit = (e) => {
-    if (e.key === "Enter" && e.target.value !== "") {
-      editModeHandler(task.id, true, e.target.value);
+    if ((e.key === "Enter" || e._reactName === "onClick") && todoInputRef.current.value) {
+      editModeHandler(task.id, true, todoInputRef.current.value);
     }
   };
 
+  // edit icon submit
   const manageEditIcon = (editingMode) => {
     if (editingMode) {
       return (
-        <Button className="btnWithIconTask btnWithIcon">
+        <Button handleClick={handleEdit} className="btnWithIconTask btnWithIcon">
           <img src={doneIcon} alt="done icon" />
         </Button>
       );
@@ -51,6 +53,7 @@ export default function Task({
           type="text"
           name="task"
           id="taskEditing"
+          inputRef={todoInputRef}
           onKeyPress={handleEdit}
           data-testid="todo-item-input"
           defaultValue={task.text}
@@ -75,7 +78,8 @@ export default function Task({
         {task.text}
       </Button>
     );
-  };
+  }
+
   return (
     <li data-testid="todo-item">
       <fieldset className="taskFieldset">

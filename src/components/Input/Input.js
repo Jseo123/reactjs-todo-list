@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import "./checkbox.scss";
 
 export default function Input({
@@ -9,6 +9,7 @@ export default function Input({
   isCompleted = false,
   handleChange = null,
   isDisabled = false,
+  inputRef = null,
   ...props
 }) {
   return (
@@ -18,6 +19,7 @@ export default function Input({
       id={id}
       defaultChecked={isCompleted}
       name={name}
+      ref={inputRef}
       onChange={handleChange}
       disabled={isDisabled}
       {...props}
