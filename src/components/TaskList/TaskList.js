@@ -8,14 +8,15 @@ export default function TaskList({
   completeHandler,
   deleteHandler,
   editModeHandler,
-  filterSearch = false,
+  isFiltering = false,
   emptyFilterMsg = "",
 }) {
+  // if array is empty
   if (taskElements.length === 0) {
     return (
       <fieldset className="taskFieldset emptyListFieldset">
         <h5 className="emptyListTitle">
-          {filterSearch ? emptyFilterMsg : "You don't have tasks!"}
+          {isFiltering ? emptyFilterMsg : "You don't have tasks!"}
         </h5>
         <img
           className="svgIcon"

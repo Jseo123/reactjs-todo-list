@@ -138,7 +138,7 @@ export default function App() {
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
               taskElements={filterTasksActive()}
-              filterSearch
+              isFiltering
               emptyFilterMsg={"There's no active tasks"}
             />
           </Route>
@@ -148,8 +148,9 @@ export default function App() {
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
               taskElements={filterTasksDone()}
+              isFiltering
               emptyFilterMsg={"Ups, there's no completed tasks"}
-              filterSearch
+
             />
           </Route>
           <Route exact path="/">
