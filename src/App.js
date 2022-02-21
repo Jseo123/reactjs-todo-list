@@ -27,7 +27,9 @@ export default function App() {
   });
 
   const addTask = (e) => {
-    if (e.target.value === "") return; // error msg
+    if (e.target.value === "") {
+      return console.log("Please enter error message");
+    }
     const newTask = {
       id: uuid(),
       text: e.target.value,
@@ -39,7 +41,9 @@ export default function App() {
       tasks: [...todoList.tasks, newTask],
     });
     e.target.value = ""; // reset input
+    return true;
   };
+
   // task completed checked / unchecked
   const taskCompleted = (id) => {
     const { tasks } = todoList;
