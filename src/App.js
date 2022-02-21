@@ -144,7 +144,7 @@ export default function App() {
     }
     return true;
   };
-
+  console.log("paso")
   return (
     <>
       <header />
