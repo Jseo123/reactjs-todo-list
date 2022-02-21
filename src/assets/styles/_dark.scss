@@ -219,4 +219,16 @@
       }
     }
   }
+
+  .taskFieldset {
+    border-bottom: 1px solid #1e1e1f9d;
+  }
+
+  .is-active {
+    opacity: 1;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(3, 48, 63);
+    background-color: rgb(3, 48, 63);
+  }
 }
