@@ -146,12 +146,12 @@ export default function App() {
       toogled = true;
       body.classList.remove("body-white");
       body.classList.add("dark");
-      document.getElementById("toogle").innerHTML = "☀";
+      document.getElementById("toogle").innerText = "☀";
     } else {
       toogled = false;
       body.classList.remove("dark");
       body.classList.add("body-white");
-      document.getElementById("toogle").innerHTML = "<span>&#9789;</span>";
+      document.getElementById("toogle").innerText = "☽";
     }
     return body.getAttribute("class");
   };
