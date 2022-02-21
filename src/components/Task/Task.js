@@ -27,7 +27,7 @@ export default function Task({
   const manageEditIcon = (editingMode) => {
     if (editingMode) {
       return (
-        <Button className="btnWithIcon">
+        <Button className="btnWithIconTask">
           <img src={doneIcon} alt="done icon" />
         </Button>
       );
@@ -35,7 +35,7 @@ export default function Task({
     return (
       <Button
         isDisabled={task.done}
-        className="btnWithIcon"
+        className="btnWithIconTask"
         handleClick={() => editModeHandler(task.id)}
       >
         <img src={editIcon} alt="edit icon" />
@@ -96,7 +96,7 @@ export default function Task({
           <Button
             handleClick={deleteItem}
             data-testid="todo-item-delete-button"
-            className="deleteBtn btnWithIcon"
+            className="deleteBtn btnWithIconTask"
           >
             <img src={deleteIcon} alt="icon delete" />
           </Button>

@@ -2,6 +2,7 @@ import { useState, useEffect, React } from "react";
 import { Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import "./index.scss";
+import Help from "./components/Help";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
@@ -148,6 +149,7 @@ export default function App() {
     <>
       <header />
       <main>
+        <Help />
         <MainHeader handleToogle={handleToogle} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />

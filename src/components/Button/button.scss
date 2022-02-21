@@ -1,4 +1,9 @@
-.iconBtn {
+.btnWithIcon {
   border: none;
   background-color: inherit;
+
+  &:hover {
+    opacity: 0.5;
+    transition: 0.3s;
+  }
 }

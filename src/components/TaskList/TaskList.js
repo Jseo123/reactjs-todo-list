@@ -27,7 +27,7 @@ export default function TaskList({
     );
   }
   return (
-    <ul className="todosList" data-testid="todos-list">
+    <ul className="todosListUl" data-testid="todos-list">
       {taskElements.map((element) => (
         <Task
           editModeHandler={editModeHandler}

@@ -43,19 +43,13 @@
   border: 1px solid lightcoral;
 }
 .deleteBtn,
-.btnWithIcon {
-  border: none;
+.btnWithIconTask {
   visibility: hidden;
-  background-color: inherit;
   img {
     width: 20px;
   }
   &:active {
     transform: translateY(4px);
-  }
-  &:hover {
-    opacity: 0.5;
-    transition: 0.3s;
   }
 }
 .taskFieldset {
