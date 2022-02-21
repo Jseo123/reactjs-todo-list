@@ -29,7 +29,7 @@ export default function App() {
 
   const addTask = (e) => {
     if (e.target.value === "") {
-      return console.log("Please enter error message");
+      return;
     }
     const newTask = {
       id: uuid(),
@@ -41,8 +41,17 @@ export default function App() {
       ...todoList,
       tasks: [...todoList.tasks, newTask],
     });
+    if (
+      document
+        .getElementsByClassName("createTaskInput")[0]
+        .getAttribute("placeholder") === "Please enter at least one character"
+    ) {
+      document
+        .getElementsByClassName("createTaskInput")[0]
+        .setAttribute("placeholder", "Introduce the task here!");
+    } // Changes placeholder back to normal in case an empty empty value was added.
+
     e.target.value = ""; // reset input
-    return true;
   };
 
   // task completed checked / unchecked
