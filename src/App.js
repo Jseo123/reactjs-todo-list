@@ -17,7 +17,9 @@ function loadLocalStorage() {
   }
   return JSON.parse(localStorage.getItem("reactjs-todo-list"));
 }
+
 export default function App() {
+  const [editingAnyItem, setEditingAnyItem] = useState(false)
   const [tasks, setTodoList] = useState(loadLocalStorage());
 
   // update localStorage
@@ -85,8 +87,11 @@ export default function App() {
         isEditing: false,
         text: inputValue,
       };
-    } else {
+      setEditingAnyItem(false)
+      // set input to edit
+    } else if (!editingAnyItem) {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
+      setEditingAnyItem(true)
     }
     setTodoList([...tasks])
   };
