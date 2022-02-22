@@ -83,7 +83,7 @@ export default function Task({
     }
     // task added
     return (
-      <Button handleClick={() => editModeHandler(task.id)} className="editBtn">
+      <Button handleDoubleClick={() => editModeHandler(task.id)} className="editBtn">
         {task.text}
       </Button>
     );

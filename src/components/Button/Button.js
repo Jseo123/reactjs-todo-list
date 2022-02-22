@@ -6,6 +6,7 @@ export default function Button({
   isDisabled = false,
   className,
   handleClick,
+  handleDoubleClick = null,
   children,
   ...props
 }) {
@@ -15,6 +16,7 @@ export default function Button({
       disabled={isDisabled}
       className={className}
       onClick={handleClick}
+      onDoubleClick={handleDoubleClick}
       {...props}
     >
       {children}
