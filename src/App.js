@@ -186,7 +186,7 @@ export default function App() {
               taskElements={tasks}
             />
           </Route>
-          <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} />
+          <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} highlightClear={filterTasksDone} />
         </article>
       </main>
     </>

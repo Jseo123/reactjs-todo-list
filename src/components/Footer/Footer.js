@@ -4,7 +4,7 @@ import Pagination from "../Pagination";
 import Clear from "../Clear";
 import "./footer.scss";
 
-export default function Footer({ taskNumber, handleClear }) {
+export default function Footer({ taskNumber, handleClear, highlightClear }) {
   return (
     <footer data-testid="app-footer">
       <div className="counter">
@@ -14,7 +14,7 @@ export default function Footer({ taskNumber, handleClear }) {
         <Pagination />
       </div>
       <div className="Clear">
-        <Clear handleClear={handleClear} />
+        <Clear handleClear={handleClear} highlightClear={highlightClear} />
       </div>
     </footer>
   );
