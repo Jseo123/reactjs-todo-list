@@ -20,7 +20,10 @@ export default function Task({
     deleteHandler(task.id);
   };
   const handleEdit = (e) => {
-    if ((e.key === "Enter" || e._reactName === "onClick") && todoInputRef.current.value) {
+    if (
+      (e.key === "Enter" || e._reactName === "onClick") &&
+      todoInputRef.current.value
+    ) {
       editModeHandler(task.id, true, todoInputRef.current.value);
     }
   };
@@ -29,7 +32,10 @@ export default function Task({
   const manageEditIcon = (editingMode) => {
     if (editingMode) {
       return (
-        <Button handleClick={handleEdit} className="btnWithIconTask btnWithIcon">
+        <Button
+          handleClick={handleEdit}
+          className="btnWithIconTask btnWithIcon"
+        >
           <img src={doneIcon} alt="done icon" />
         </Button>
       );
@@ -78,7 +84,7 @@ export default function Task({
         {task.text}
       </Button>
     );
-  }
+  };
 
   return (
     <li data-testid="todo-item">

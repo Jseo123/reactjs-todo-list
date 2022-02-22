@@ -183,7 +183,6 @@ export default function App() {
               taskElements={filterTasksDone()}
               isFiltering
               emptyFilterMsg={"Ups, there's no completed tasks"}
-
             />
           </Route>
           <Route exact path="/">
