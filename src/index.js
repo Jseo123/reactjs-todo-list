@@ -7,6 +7,10 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 function setBody() {
+  if (!localStorage.getItem("mode")) {
+    localStorage.setItem("mode", "false");
+  }
+
   if (JSON.parse(localStorage.getItem("mode"))) {
     document.body.classList.add("dark");
   } else {
