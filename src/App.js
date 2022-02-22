@@ -9,13 +9,7 @@ import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
 import "./app.scss";
 
-let toogled = () => {
-  let storageMode = localStorage.getItem("mode");
-  if (!storageMode) {
-    storageMode = false;
-  }
-  return storageMode;
-};
+let toogled = false;
 
 function loadLocalStorage() {
   if (!localStorage.getItem("reactjs-todo-list")) {
@@ -129,6 +123,7 @@ export default function App() {
   // night mode, light mode
   const handleToogle = () => {
     const body = document.body;
+
     if (!toogled) {
       toogled = true;
       localStorage.setItem("mode", "true");
@@ -144,13 +139,12 @@ export default function App() {
     }
     return body.getAttribute("class");
   };
-  toogled();
   return (
     <>
       <header />
       <main>
         <Help />
-        <MainHeader handleToogle={handleToogle} />
+        <MainHeader handleToogle={handleToogle} handleLoad={toogled} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
