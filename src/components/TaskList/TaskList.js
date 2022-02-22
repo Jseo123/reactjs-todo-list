@@ -1,5 +1,6 @@
 import React from "react";
-import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion'
+// eslint-disable-next-line import/no-unresolved
+import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
 import Task from "../Task";
 import "./tasklist.scss";
 import emptyTasklistImg from "../../assets/img/emptyTasklist.svg";
@@ -28,26 +29,26 @@ export default function TaskList({
     );
   }
   const variants = {
-    visible: i => ({
+    visible: (i) => ({
       opacity: 1,
       transition: {
         delay: i * 0.05,
       },
     }),
     hidden: { opacity: 0 },
-  }
+  };
   return (
     <ul className="todosListUl" data-testid="todos-list">
       <AnimatePresence>
         {taskElements.map((element, index) => (
-          <motion.div key={element.id}
+          <motion.div
+            key={element.id}
             custom={index}
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, x: "-100%" }}
             variants={variants}
           >
-
             <Task
               editModeHandler={editModeHandler}
               checkboxHandler={completeHandler}

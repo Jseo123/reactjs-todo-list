@@ -65,7 +65,7 @@ export default function App() {
       const indexTaskSelected = tasks.indexOf(taskSelected);
       tasks[indexTaskSelected] = taskComplete;
 
-      setTodoList([...tasks])
+      setTodoList([...tasks]);
     }
   };
   // delete task
@@ -73,7 +73,7 @@ export default function App() {
     const taskSelected = tasks.find((task) => task.id === id);
     const indexTaskSelected = tasks.indexOf(taskSelected);
     tasks.splice(indexTaskSelected, 1);
-    setTodoList([...tasks])
+    setTodoList([...tasks]);
   };
   // edit task and enter edited
   const taskEditMode = (id, edited = false, inputValue = undefined) => {
@@ -92,19 +92,18 @@ export default function App() {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
       setEditingAnyItem(true)
     }
-    setTodoList([...tasks])
+    setTodoList([...tasks]);
   };
   // clear completed tasks
   const clearCompletedTasks = () => {
     const itemsActive = tasks.filter(
       (filteredElement) => filteredElement.done !== true,
     );
-    setTodoList([...itemsActive])
+    setTodoList([...itemsActive]);
   };
 
   // check items left
   const checkState = () => {
-
     const filteredItems = tasks.filter(
       (filteredElement) => filteredElement.done === false,
     );
@@ -113,15 +112,11 @@ export default function App() {
   };
   // filter array of task to done
   const filterTasksDone = () => {
-    return tasks.filter(
-      (filteredElement) => filteredElement.done === true,
-    );
+    return tasks.filter((filteredElement) => filteredElement.done === true);
   };
   // filter array of task to active
   const filterTasksActive = () => {
-    return tasks.filter(
-      (filteredElement) => filteredElement.done !== true,
-    );
+    return tasks.filter((filteredElement) => filteredElement.done !== true);
   };
   // night mode, light mode
   const handleToogle = () => {
@@ -167,7 +162,6 @@ export default function App() {
               taskElements={filterTasksDone()}
               isFiltering
               emptyFilterMsg={"Ups, there's no completed tasks"}
-
             />
           </Route>
           <Route exact path="/">
