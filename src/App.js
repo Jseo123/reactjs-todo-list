@@ -9,8 +9,6 @@ import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
 
-
-let toogled = false;
 function loadHelpLocalStorage() {
   if (!localStorage.getItem("helped")) {
     return false;
@@ -25,8 +23,7 @@ function loadTaskLocalStorage() {
 }
 
 export default function App() {
-
-  const [editingAnyItem, setEditingAnyItem] = useState(false)
+  const [editingAnyItem, setEditingAnyItem] = useState(false);
   const [tasks, setTodoList] = useState(loadTaskLocalStorage());
 
   // update localStorage
@@ -128,10 +125,12 @@ export default function App() {
     return tasks.filter((filteredElement) => filteredElement.done !== true);
   };
   // night mode, light mode
+
   const handleToogle = () => {
     const body = document.body;
+    let toogled = JSON.parse(localStorage.getItem("mode"));
 
-    if (!toogled) {
+    if (toogled === false) {
       toogled = true;
       localStorage.setItem("mode", "true");
       body.classList.remove("body-white");
@@ -151,7 +150,7 @@ export default function App() {
       <header />
       <main>
         <Help handleLocalStorage={loadHelpLocalStorage} />
-        <MainHeader handleToogle={handleToogle} handleLoad={toogled} />
+        <MainHeader handleToogle={handleToogle} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>

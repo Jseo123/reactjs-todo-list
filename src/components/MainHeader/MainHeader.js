@@ -2,6 +2,14 @@ import { React } from "react";
 import { motion } from "framer-motion/dist/framer-motion";
 
 export default function MainHeader({ handleToogle }) {
+  const displayButton = () => {
+    let display = "☽";
+    if (localStorage.getItem("mode") === "true") {
+      display = "☀";
+    }
+    return display;
+  };
+
   return (
     <div className="mainHeader">
       <motion.h1
@@ -18,7 +26,7 @@ export default function MainHeader({ handleToogle }) {
         data-testid="toggle-theme"
         onClick={handleToogle}
       >
-        <span>&#9789;</span>
+        {displayButton()}
       </button>
     </div>
   );
