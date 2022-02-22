@@ -2,12 +2,13 @@ import { useState, useEffect, React } from "react";
 import { Route } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 import "./index.scss";
+import "./app.scss";
 import Help from "./components/Help";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
-import "./app.scss";
+
 
 let toogled = false;
 function loadHelpLocalStorage() {
@@ -24,6 +25,7 @@ function loadTaskLocalStorage() {
 }
 
 export default function App() {
+
   const [editingAnyItem, setEditingAnyItem] = useState(false)
   const [tasks, setTodoList] = useState(loadTaskLocalStorage());
 
@@ -62,9 +64,11 @@ export default function App() {
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
       const taskComplete = { ...taskSelected, done: true };
-      const tasksFiltered = tasks.filter(element => element.id !== taskSelected.id);
+      const tasksFiltered = tasks.filter(
+        (element) => element.id !== taskSelected.id,
+      );
 
-      setTodoList([...tasksFiltered, taskComplete])
+      setTodoList([...tasksFiltered, taskComplete]);
     } else {
       const taskComplete = { ...taskSelected, done: false };
       const indexTaskSelected = tasks.indexOf(taskSelected);
@@ -91,11 +95,11 @@ export default function App() {
         isEditing: false,
         text: inputValue,
       };
-      setEditingAnyItem(false)
+      setEditingAnyItem(false);
       // set input to edit
     } else if (!editingAnyItem) {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
-      setEditingAnyItem(true)
+      setEditingAnyItem(true);
     }
     setTodoList([...tasks]);
   };
@@ -126,13 +130,16 @@ export default function App() {
   // night mode, light mode
   const handleToogle = () => {
     const body = document.body;
+
     if (!toogled) {
       toogled = true;
+      localStorage.setItem("mode", "true");
       body.classList.remove("body-white");
       body.classList.add("dark");
       document.getElementById("toogle").innerText = "☀";
     } else {
       toogled = false;
+      localStorage.setItem("mode", "false");
       body.classList.remove("dark");
       body.classList.add("body-white");
       document.getElementById("toogle").innerText = "☽";
@@ -144,7 +151,7 @@ export default function App() {
       <header />
       <main>
         <Help handleLocalStorage={loadHelpLocalStorage} />
-        <MainHeader handleToogle={handleToogle} />
+        <MainHeader handleToogle={handleToogle} handleLoad={toogled} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
