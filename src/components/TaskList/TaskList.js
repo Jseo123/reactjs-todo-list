@@ -1,11 +1,12 @@
 import React from "react";
 // eslint-disable-next-line import/no-unresolved
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { Reorder, AnimatePresence } from "framer-motion/dist/framer-motion";
 import Task from "../Task";
 import "./tasklist.scss";
 import emptyTasklistImg from "../../assets/img/emptyTasklist.svg";
 
 export default function TaskList({
+  reOrderList,
   taskElements,
   completeHandler,
   deleteHandler,
@@ -38,15 +39,25 @@ export default function TaskList({
     hidden: { opacity: 0 },
   };
   return (
-    <ul className="todosListUl" data-testid="todos-list">
+    <Reorder.Group
+      data-testid="todos-list"
+      className="todosListUl"
+      axis="y"
+      values={taskElements}
+      onReorder={reOrderList}
+    >
       <AnimatePresence>
         {taskElements.map((element, index) => (
-          <motion.div
+          <Reorder.Item
+            data-testid="todo-item"
+            className="reorderItem"
+            value={element}
             key={element.id}
             custom={index}
             initial="hidden"
             animate="visible"
             exit={{ opacity: 0, x: "-100%" }}
+            layoutId={element.id}
             variants={variants}
           >
             <Task
@@ -56,9 +67,10 @@ export default function TaskList({
               key={element.id}
               task={element}
             />
-          </motion.div>
+          </Reorder.Item>
         ))}
       </AnimatePresence>
-    </ul>
+    </Reorder.Group>
+
   );
 }

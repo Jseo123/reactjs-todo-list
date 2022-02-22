@@ -90,31 +90,31 @@ export default function Task({
   };
 
   return (
-    <li data-testid="todo-item">
-      <fieldset className="taskFieldset">
-        <Input
-          onChange={checkboxAction}
-          type="checkbox"
-          name="checkTask"
-          id={`inputCheck${task.id}`}
-          isCompleted={task.done}
-          className="inputCheck"
-          isDisabled={task.isEditing}
-          data-testid="todo-item-checkbox"
-        />
-        {checkTaskMode()}
-        <div className="actionBtnsContainer">
-          {manageEditIcon(task.isEditing)}
 
-          <Button
-            handleClick={deleteItem}
-            data-testid="todo-item-delete-button"
-            className="deleteBtn btnWithIconTask btnWithIcon"
-          >
-            <img src={deleteIcon} alt="icon delete" />
-          </Button>
-        </div>
-      </fieldset>
-    </li>
+    <fieldset className="taskFieldset">
+      <Input
+        onChange={checkboxAction}
+        type="checkbox"
+        name="checkTask"
+        id={`inputCheck${task.id}`}
+        isCompleted={task.done}
+        className="inputCheck"
+        isDisabled={task.isEditing}
+        data-testid="todo-item-checkbox"
+      />
+      {checkTaskMode()}
+      <div className="actionBtnsContainer">
+        {manageEditIcon(task.isEditing)}
+
+        <Button
+          handleClick={deleteItem}
+          data-testid="todo-item-delete-button"
+          className="deleteBtn btnWithIconTask btnWithIcon"
+        >
+          <img src={deleteIcon} alt="icon delete" />
+        </Button>
+      </div>
+    </fieldset>
+
   );
 }
