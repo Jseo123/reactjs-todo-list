@@ -12,7 +12,6 @@ export default function Task({
   checkboxHandler,
   deleteHandler,
 }) {
-
   const todoInputRef = useRef(null);
   const checkboxAction = () => {
     checkboxHandler(task.id);
@@ -55,6 +54,7 @@ export default function Task({
   const checkTaskMode = () => {
     // edit mode
     if (task.isEditing && !task.done) {
+
       return (
         <Input
           type="text"
@@ -65,6 +65,8 @@ export default function Task({
           data-testid="todo-item-input"
           defaultValue={task.text}
         />
+
+
       );
     }
     // task completed mode
