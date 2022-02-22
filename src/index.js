@@ -6,6 +6,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+function setBody() {
+  if (localStorage.getItem("mode") === "true") {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.add("body-white");
+  }
+}
+
+setBody();
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -15,7 +25,6 @@ ReactDOM.render(
     </Router>
   </React.StrictMode>,
   document.getElementById("root"),
-  document.body.classList.add("body-white"),
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -9,7 +9,13 @@ import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
 import "./app.scss";
 
-let toogled = false;
+let toogled = () => {
+  let storageMode = localStorage.getItem("mode");
+  if (!storageMode) {
+    storageMode = false;
+  }
+  return storageMode;
+};
 
 function loadLocalStorage() {
   if (!localStorage.getItem("reactjs-todo-list")) {
@@ -19,7 +25,7 @@ function loadLocalStorage() {
 }
 
 export default function App() {
-  const [editingAnyItem, setEditingAnyItem] = useState(false)
+  const [editingAnyItem, setEditingAnyItem] = useState(false);
   const [tasks, setTodoList] = useState(loadLocalStorage());
 
   // update localStorage
@@ -57,9 +63,11 @@ export default function App() {
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
       const taskComplete = { ...taskSelected, done: true };
-      const tasksFiltered = tasks.filter(element => element.id !== taskSelected.id);
+      const tasksFiltered = tasks.filter(
+        (element) => element.id !== taskSelected.id,
+      );
 
-      setTodoList([...tasksFiltered, taskComplete])
+      setTodoList([...tasksFiltered, taskComplete]);
     } else {
       const taskComplete = { ...taskSelected, done: false };
       const indexTaskSelected = tasks.indexOf(taskSelected);
@@ -86,11 +94,11 @@ export default function App() {
         isEditing: false,
         text: inputValue,
       };
-      setEditingAnyItem(false)
+      setEditingAnyItem(false);
       // set input to edit
     } else if (!editingAnyItem) {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
-      setEditingAnyItem(true)
+      setEditingAnyItem(true);
     }
     setTodoList([...tasks]);
   };
@@ -123,17 +131,20 @@ export default function App() {
     const body = document.body;
     if (!toogled) {
       toogled = true;
+      localStorage.setItem("mode", "true");
       body.classList.remove("body-white");
       body.classList.add("dark");
       document.getElementById("toogle").innerText = "☀";
     } else {
       toogled = false;
+      localStorage.setItem("mode", "false");
       body.classList.remove("dark");
       body.classList.add("body-white");
       document.getElementById("toogle").innerText = "☽";
     }
     return body.getAttribute("class");
   };
+  toogled();
   return (
     <>
       <header />
