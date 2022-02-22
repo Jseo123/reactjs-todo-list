@@ -12,6 +12,7 @@ export default function Task({
   checkboxHandler,
   deleteHandler,
 }) {
+
   const todoInputRef = useRef(null);
   const checkboxAction = () => {
     checkboxHandler(task.id);
