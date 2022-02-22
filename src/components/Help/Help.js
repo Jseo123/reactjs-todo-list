@@ -5,10 +5,13 @@ import cancelIcon from "../../assets/img/deleteIcon.png";
 import Button from "../Button";
 import "./help.scss";
 
-export default function Help() {
-    const [helpModal, setToggleModal] = useState(false)
+export default function Help({ handleLocalStorage }) {
+    const [isHelped, setIsHelped] = useState(handleLocalStorage())
+    const [helpModal, setToggleModal] = useState(!isHelped)
     const openModal = () => {
         setToggleModal(!helpModal);
+        localStorage.setItem("helped", JSON.stringify(true))
+        setIsHelped(true)
     }
     return (
         <>
@@ -106,6 +109,7 @@ function ModalWindow({ handleModal }) {
                 <Button className="btnWithIcon" handleClick={handleModal}>
                     <img className="deleteIcon" src={cancelIcon} alt="cancel icon" />
                 </Button>
+                {/* Executes next step of tutorial */}
                 {section[position]()}
                 {position <= 1 && (
                     <Button className="nextSectionBtn" handleClick={handleContinue}>

@@ -10,8 +10,13 @@ import MainHeader from "./components/MainHeader";
 import "./app.scss";
 
 let toogled = false;
-
-function loadLocalStorage() {
+function loadHelpLocalStorage() {
+  if (!localStorage.getItem("helped")) {
+    return false;
+  }
+  return JSON.parse(localStorage.getItem("helped"));
+}
+function loadTaskLocalStorage() {
   if (!localStorage.getItem("reactjs-todo-list")) {
     return [];
   }
@@ -20,7 +25,7 @@ function loadLocalStorage() {
 
 export default function App() {
   const [editingAnyItem, setEditingAnyItem] = useState(false)
-  const [tasks, setTodoList] = useState(loadLocalStorage());
+  const [tasks, setTodoList] = useState(loadTaskLocalStorage());
 
   // update localStorage
   useEffect(() => {
@@ -138,7 +143,7 @@ export default function App() {
     <>
       <header />
       <main>
-        <Help />
+        <Help handleLocalStorage={loadHelpLocalStorage} />
         <MainHeader handleToogle={handleToogle} />
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
