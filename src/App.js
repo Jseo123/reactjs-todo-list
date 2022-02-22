@@ -18,15 +18,14 @@ function loadLocalStorage() {
   return JSON.parse(localStorage.getItem("reactjs-todo-list"));
 }
 export default function App() {
-  const [todoList, setTodoList] = useState({
-    tasks: loadLocalStorage(),
-  });
+  const [tasks, setTodoList] = useState(loadLocalStorage());
 
   // update localStorage
   useEffect(() => {
-    localStorage.setItem("reactjs-todo-list", JSON.stringify(todoList.tasks));
+    localStorage.setItem("reactjs-todo-list", JSON.stringify(tasks));
   });
 
+  // add task
   const addTask = (e) => {
     if (e.target.value === "") {
       return;
@@ -37,10 +36,7 @@ export default function App() {
       done: false,
       isEditing: false,
     };
-    setTodoList({
-      ...todoList,
-      tasks: [...todoList.tasks, newTask],
-    });
+    setTodoList([...tasks, newTask]);
     if (
       document
         .getElementsByClassName("createTaskInput")[0]
@@ -56,41 +52,30 @@ export default function App() {
 
   // task completed checked / unchecked
   const taskCompleted = (id) => {
-    const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
       const taskEdited = { ...taskSelected, done: true };
       const indexTaskSelected = tasks.indexOf(taskSelected);
       tasks[indexTaskSelected] = taskEdited;
 
-      setTodoList({
-        ...todoList,
-        tasks: [...tasks],
-      });
+      setTodoList([...tasks]);
     } else {
       const taskEdited = { ...taskSelected, done: false };
       const indexTaskSelected = tasks.indexOf(taskSelected);
       tasks[indexTaskSelected] = taskEdited;
 
-      setTodoList({
-        ...todoList,
-        tasks: [...tasks],
-      });
+      setTodoList([...tasks]);
     }
   };
   // delete task
   const deleteTask = (id) => {
-    const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     const indexTaskSelected = tasks.indexOf(taskSelected);
     tasks.splice(indexTaskSelected, 1);
-    setTodoList({
-      tasks: [...tasks],
-    });
+    setTodoList([...tasks]);
   };
   // edit task and enter edited
   const taskEditMode = (id, edited = false, inputValue = undefined) => {
-    const { tasks } = todoList;
     const taskSelected = tasks.find((task) => task.id === id);
     const indexTaskSelected = tasks.indexOf(taskSelected);
     if (edited) {
@@ -103,24 +88,18 @@ export default function App() {
     } else {
       tasks[indexTaskSelected] = { ...taskSelected, isEditing: true };
     }
-    setTodoList({
-      tasks: [...tasks],
-    });
+    setTodoList([...tasks]);
   };
   // clear completed tasks
   const clearCompletedTasks = () => {
-    const itemsActive = todoList.tasks.filter(
+    const itemsActive = tasks.filter(
       (filteredElement) => filteredElement.done !== true,
     );
-    setTodoList({
-      tasks: itemsActive,
-    });
+    setTodoList([...itemsActive]);
   };
 
   // check items left
   const checkState = () => {
-    const { tasks } = todoList;
-
     const filteredItems = tasks.filter(
       (filteredElement) => filteredElement.done === false,
     );
@@ -129,15 +108,11 @@ export default function App() {
   };
   // filter array of task to done
   const filterTasksDone = () => {
-    return todoList.tasks.filter(
-      (filteredElement) => filteredElement.done === true,
-    );
+    return tasks.filter((filteredElement) => filteredElement.done === true);
   };
   // filter array of task to active
   const filterTasksActive = () => {
-    return todoList.tasks.filter(
-      (filteredElement) => filteredElement.done !== true,
-    );
+    return tasks.filter((filteredElement) => filteredElement.done !== true);
   };
   // night mode, light mode
   const handleToogle = () => {
@@ -190,7 +165,7 @@ export default function App() {
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
-              taskElements={todoList.tasks}
+              taskElements={tasks}
             />
           </Route>
           <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} />

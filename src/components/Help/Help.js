@@ -12,20 +12,13 @@ export default function Help() {
   };
   return (
     <>
-      <motion.Button
-        initial={{ y: -20 }}
-        animate={{ y: 0 }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="helpBtn btnWithIcon"
-        handleClick={openModal}
-      >
+      <Button className="helpBtn btnWithIcon" handleClick={openModal}>
         <img className="bookIcon" src={bookIcon} alt="help icon" />
-      </motion.Button>
+      </Button>
       {helpModal && <ModalWindow handleModal={openModal} />}
     </>
   );
 }
-
 // modal window component
 function ModalWindow({ handleModal }) {
   const modalFirstSection = () => {
@@ -44,8 +37,8 @@ function ModalWindow({ handleModal }) {
         <h1>👋</h1>
         <h3>Creating the first todo!</h3>
         <p>
-          you have to write down the tasks that you are going to perform in the
-          future
+          In this field, you have to write the tasks that you are going to
+          perform in the future
         </p>
         <p>After that, press enter to submit the task</p>
       </>
@@ -82,7 +75,7 @@ function ModalWindow({ handleModal }) {
     return (
       <motion.div
         initial={{ height: 0, x: 300 }}
-        animate={{ height: "40%", x: 0 }}
+        animate={{ height: "45%", x: 0 }}
         className="markupTaskList"
       />
     );
@@ -91,7 +84,6 @@ function ModalWindow({ handleModal }) {
     section: [modalFirstSection, modalSecondSection, modalThirdSection],
     position: 0,
   });
-
   const handleContinue = () => {
     const { position } = modalSection;
     setModalSection({
