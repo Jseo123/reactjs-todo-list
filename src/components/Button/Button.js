@@ -14,7 +14,7 @@ export default function Button({
       type={!type ? "button" : "submit"}
       disabled={isDisabled}
       className={className}
-      onClick={handleClick}
+      onDoubleClick={handleClick}
       {...props}
     >
       {children}
