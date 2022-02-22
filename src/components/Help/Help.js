@@ -12,10 +12,13 @@ export default function Help() {
     }
     return (
         <>
-            <Button className="helpBtn btnWithIcon" handleClick={openModal}>
+            <motion.button
+                animate={{ y: [-30, 0, -30] }}
+                transition={{ duration: 2.5, repeat: Infinity, type: "tween" }}
+                className="helpBtn btnWithIcon" onClick={openModal}>
                 <img className="bookIcon" src={bookIcon} alt="help icon" />
 
-            </Button>
+            </motion.button>
             {helpModal && <ModalWindow handleModal={openModal} />}
         </>
     );
