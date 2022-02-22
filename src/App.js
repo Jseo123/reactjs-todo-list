@@ -44,7 +44,7 @@ export default function App() {
       done: false,
       isEditing: false,
     };
-    setTodoList([...tasks, newTask]);
+    setTodoList([newTask, ...tasks]);
     if (
       document
         .getElementsByClassName("createTaskInput")[0]
@@ -157,6 +157,7 @@ export default function App() {
         <article className="todoListContainer">
           <Route path="/Active">
             <TaskList
+              reOrderList={setTodoList}
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
@@ -167,6 +168,7 @@ export default function App() {
           </Route>
           <Route path="/Done">
             <TaskList
+              reOrderList={setTodoList}
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
@@ -177,6 +179,7 @@ export default function App() {
           </Route>
           <Route exact path="/">
             <TaskList
+              reOrderList={setTodoList}
               editModeHandler={taskEditMode}
               deleteHandler={deleteTask}
               completeHandler={taskCompleted}
