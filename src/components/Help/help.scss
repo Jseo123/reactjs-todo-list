@@ -20,6 +20,12 @@
   z-index: 1;
   opacity: 0.6;
 }
+.getStarted {
+  color: rgb(167, 167, 167);
+}
+.credits {
+  font-size: 12px;
+}
 .modalWindow {
   position: absolute;
   display: flex;
@@ -46,7 +52,11 @@
     width: 20px;
   }
 }
-
+// position of windows in different steps
+.pos-0,
+.pos-4 {
+  right: 40%;
+}
 // marks for tutorial
 .markupInput {
   position: absolute;
@@ -61,6 +71,12 @@
   border: 3px solid white;
   width: 40%;
 }
+.markupFilters {
+  position: absolute;
+  top: 550px;
+  border: 3px solid white;
+  width: 25%;
+}
 
 @media only screen and (max-width: 600px) {
   .helpBtn {
@@ -70,11 +86,12 @@
       width: 40px;
     }
   }
-  .markupInput {
-    width: 70%;
-  }
+  .markupInput,
   .markupTaskList {
     width: 70%;
+  }
+  .markupFilters {
+    width: 40%;
   }
 }
 @media (max-width: 900px) {
@@ -82,5 +99,8 @@
     width: 100%;
     top: 580px;
     right: 0px;
+  }
+  .pos-0 {
+    top: 200px;
   }
 }
