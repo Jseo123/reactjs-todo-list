@@ -1,7 +1,6 @@
 @use "../../assets/styles/typography" as fonts;
 @use "../../assets/styles/variables" as variables;
 @import url(fonts.$labelFont);
-
 .inputCheck {
   position: relative;
   width: 1.5em;
