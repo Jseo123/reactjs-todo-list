@@ -38,7 +38,7 @@ export default function App() {
       done: false,
       isEditing: false,
     };
-    setTodoList([...tasks, newTask]);
+    setTodoList([newTask, ...tasks]);
     if (
       document
         .getElementsByClassName("createTaskInput")[0]
