@@ -56,15 +56,14 @@ export default function App() {
   const taskCompleted = (id) => {
     const taskSelected = tasks.find((task) => task.id === id);
     if (!taskSelected.done) {
-      const taskEdited = { ...taskSelected, done: true };
-      const indexTaskSelected = tasks.indexOf(taskSelected);
-      tasks[indexTaskSelected] = taskEdited;
+      const taskComplete = { ...taskSelected, done: true };
+      const tasksFiltered = tasks.filter(element => element.id !== taskSelected.id);
 
-      setTodoList([...tasks]);
+      setTodoList([...tasksFiltered, taskComplete])
     } else {
-      const taskEdited = { ...taskSelected, done: false };
+      const taskComplete = { ...taskSelected, done: false };
       const indexTaskSelected = tasks.indexOf(taskSelected);
-      tasks[indexTaskSelected] = taskEdited;
+      tasks[indexTaskSelected] = taskComplete;
 
       setTodoList([...tasks]);
     }
