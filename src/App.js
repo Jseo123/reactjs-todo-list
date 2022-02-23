@@ -77,6 +77,9 @@ export default function App() {
   // delete task
   const deleteTask = (id) => {
     const taskSelected = tasks.find((task) => task.id === id);
+    if (taskSelected.isEditing) {
+      setEditingAnyItem(false);
+    }
     const indexTaskSelected = tasks.indexOf(taskSelected);
     tasks.splice(indexTaskSelected, 1);
     setTodoList([...tasks]);
