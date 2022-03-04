@@ -1,4 +1,5 @@
-import { React, useRef } from "react";
+import { React, useRef, useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
 import "./Task.scss";
 import deleteIcon from "../../assets/img/deleteIcon.png";
 import editIcon from "../../assets/img/editIcon.svg";
@@ -6,19 +7,16 @@ import doneIcon from "../../assets/img/doneIcon.svg";
 import Input from "../Input";
 import Button from "../Button";
 
-export default function Task({
-  editModeHandler,
-  task,
-  checkboxHandler,
-  deleteHandler,
-}) {
+export default function Task({task}) {
+  const taskContexted = useContext(TaskContext)
+  const {editModeHandler, completeHandler, deleteHandler} = taskContexted 
+
   const todoInputRef = useRef(null);
+
   const checkboxAction = () => {
-    checkboxHandler(task.id);
+    completeHandler(task.id);
   };
-  const deleteItem = () => {
-    deleteHandler(task.id);
-  };
+
   const handleEdit = (e) => {
     if (
       (e.key === "Enter" || e._reactName === "onClick") &&
@@ -107,7 +105,7 @@ export default function Task({
         {manageEditIcon(task.isEditing)}
 
         <Button
-          handleClick={deleteItem}
+          handleClick={()=>deleteHandler(task.id)}
           data-testid="todo-item-delete-button"
           className="deleteBtn btnWithIconTask btnWithIcon"
         >

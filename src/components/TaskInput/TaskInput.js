@@ -4,13 +4,7 @@ import Input from "../Input";
 export default function TaskInput({ handleSubmit }) {
   function handleKeyPress(e) {
     if (e.key === "Enter" && e.target.value !== "") {
-      handleSubmit(e);
-    } else {
-      const inputTask = document.getElementsByClassName("createTaskInput")[0];
-      inputTask.setAttribute(
-        "placeholder",
-        "Please enter at least one character",
-      );
+      return handleSubmit(e);
     }
     return true;
   }

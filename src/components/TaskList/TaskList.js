@@ -8,9 +8,6 @@ import emptyTasklistImg from "../../assets/img/emptyTasklist.svg";
 export default function TaskList({
   reOrderList,
   taskElements,
-  completeHandler,
-  deleteHandler,
-  editModeHandler,
   isFiltering = false,
   emptyFilterMsg = "",
 }) {
@@ -61,9 +58,6 @@ export default function TaskList({
             variants={variants}
           >
             <Task
-              editModeHandler={editModeHandler}
-              checkboxHandler={completeHandler}
-              deleteHandler={deleteHandler}
               key={element.id}
               task={element}
             />

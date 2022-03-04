@@ -8,6 +8,9 @@ import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
+import { TaskContext } from "./context/TaskContext";
+
+// task context
 
 function loadHelpLocalStorage() {
   if (!localStorage.getItem("helped")) {
@@ -29,7 +32,7 @@ export default function App() {
   // update localStorage
   useEffect(() => {
     localStorage.setItem("reactjs-todo-list", JSON.stringify(tasks));
-  });
+  },[tasks]);
 
   // add task
   const addTask = (e) => {
@@ -43,15 +46,7 @@ export default function App() {
       isEditing: false,
     };
     setTodoList([newTask, ...tasks]);
-    if (
-      document
-        .getElementsByClassName("createTaskInput")[0]
-        .getAttribute("placeholder") === "Please enter at least one character"
-    ) {
-      document
-        .getElementsByClassName("createTaskInput")[0]
-        .setAttribute("placeholder", "Introduce the task here!");
-    } // Changes placeholder back to normal in case an empty empty value was added.
+
 
     e.target.value = ""; // reset input
   };
@@ -157,13 +152,16 @@ export default function App() {
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
+        
         <article className="todoListContainer">
+        <TaskContext.Provider value={{
+          editModeHandler:taskEditMode,
+          deleteHandler:deleteTask,
+          completeHandler:taskCompleted,
+        }}> 
           <Route path="/Active">
             <TaskList
               reOrderList={setTodoList}
-              editModeHandler={taskEditMode}
-              deleteHandler={deleteTask}
-              completeHandler={taskCompleted}
               taskElements={filterTasksActive()}
               isFiltering
               emptyFilterMsg={"There's no active tasks"}
@@ -172,9 +170,6 @@ export default function App() {
           <Route path="/Done">
             <TaskList
               reOrderList={setTodoList}
-              editModeHandler={taskEditMode}
-              deleteHandler={deleteTask}
-              completeHandler={taskCompleted}
               taskElements={filterTasksDone()}
               isFiltering
               emptyFilterMsg={"Ups, there's no completed tasks"}
@@ -183,14 +178,13 @@ export default function App() {
           <Route exact path="/">
             <TaskList
               reOrderList={setTodoList}
-              editModeHandler={taskEditMode}
-              deleteHandler={deleteTask}
-              completeHandler={taskCompleted}
               taskElements={tasks}
             />
           </Route>
+          </TaskContext.Provider>
           <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} highlightClear={filterTasksDone} />
         </article>
+        
       </main>
     </>
   );
