@@ -6,3 +6,8 @@ export const TaskContext = createContext({
     deleteHandler : ()=>{},
 })
 
+export const TaskListContext = createContext({
+    reOrderList: ()=>{},
+    tasks:[]
+})
+

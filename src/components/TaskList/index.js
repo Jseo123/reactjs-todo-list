@@ -1,1 +1,1 @@
-export { default } from "./TaskList";
+export { default,filterItemsCompleted } from "./TaskList";

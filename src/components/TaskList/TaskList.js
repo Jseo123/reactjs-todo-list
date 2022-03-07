@@ -1,22 +1,62 @@
-import React from "react";
-// eslint-disable-next-line import/no-unresolved
+import React, { useContext } from "react";
+
 import { Reorder, AnimatePresence } from "framer-motion/dist/framer-motion";
+
+import { TaskListContext } from "../../context/TaskContext";
 import Task from "../Task";
 import "./tasklist.scss";
 import emptyTasklistImg from "../../assets/img/emptyTasklist.svg";
 
+const variants = {
+  visible: (i) => ({
+    opacity: 1,
+    transition: {
+      delay: i * 0.05,
+    },
+  }),
+  hidden: { opacity: 0 },
+};
+
+export const filterItemsCompleted = (items) => {
+  return items.filter((filteredElement) => filteredElement.done === true);
+};
+
+const filterItemsActive = (items) => {
+  return items.filter((filteredElement) => filteredElement.done !== true);
+};
+
 export default function TaskList({
-  reOrderList,
-  taskElements,
-  isFiltering = false,
+  isFilteringCompletedTasks = false,
+  isFilteringActiveTasks = false,
   emptyFilterMsg = "",
 }) {
+  const taskListContext = useContext(TaskListContext)
+  const { tasks } = taskListContext
+
+  // filter array of task to done
+  
+  // filter array of task to active
+  
+
+  const setFilters = () => {
+    if (isFilteringActiveTasks) {
+      const filteredTasks = filterItemsActive(tasks)
+      return filteredTasks
+    }
+    if (isFilteringCompletedTasks) {
+      const filteredTasks = filterItemsCompleted(tasks)
+      return filteredTasks
+    }
+    return tasks
+  }
+
+
   // if array is empty
-  if (taskElements.length === 0) {
+  if (tasks.length === 0) {
     return (
       <fieldset className="taskFieldset emptyListFieldset">
         <h5 className="emptyListTitle">
-          {isFiltering ? emptyFilterMsg : "You don't have tasks!"}
+          {isFilteringCompletedTasks || isFilteringActiveTasks ? emptyFilterMsg : "You don't have tasks!"}
         </h5>
         <img
           className="svgIcon"
@@ -26,22 +66,14 @@ export default function TaskList({
       </fieldset>
     );
   }
-  const variants = {
-    visible: (i) => ({
-      opacity: 1,
-      transition: {
-        delay: i * 0.05,
-      },
-    }),
-    hidden: { opacity: 0 },
-  };
+  const taskElements = setFilters()
   return (
     <Reorder.Group
       data-testid="todos-list"
       className="todosListUl"
       axis="y"
       values={taskElements}
-      onReorder={reOrderList}
+      onReorder={taskListContext.reOrderList}
     >
       <AnimatePresence>
         {taskElements.map((element, index) => (

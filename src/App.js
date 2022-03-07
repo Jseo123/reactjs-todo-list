@@ -5,10 +5,10 @@ import "./index.scss";
 import "./app.scss";
 import Help from "./components/Help";
 import TaskInput from "./components/TaskInput";
-import TaskList from "./components/TaskList";
+import TaskList,{filterItemsCompleted} from "./components/TaskList";
 import Footer from "./components/Footer";
 import MainHeader from "./components/MainHeader";
-import { TaskContext } from "./context/TaskContext";
+import { TaskContext, TaskListContext } from "./context/TaskContext";
 
 // task context
 
@@ -32,7 +32,7 @@ export default function App() {
   // update localStorage
   useEffect(() => {
     localStorage.setItem("reactjs-todo-list", JSON.stringify(tasks));
-  },[tasks]);
+  }, [tasks]);
 
   // add task
   const addTask = (e) => {
@@ -114,14 +114,6 @@ export default function App() {
 
     return filteredItems.length;
   };
-  // filter array of task to done
-  const filterTasksDone = () => {
-    return tasks.filter((filteredElement) => filteredElement.done === true);
-  };
-  // filter array of task to active
-  const filterTasksActive = () => {
-    return tasks.filter((filteredElement) => filteredElement.done !== true);
-  };
   // night mode, light mode
 
   const handleToogle = () => {
@@ -152,39 +144,39 @@ export default function App() {
         <article className="createTaskContainer">
           <TaskInput handleSubmit={addTask} />
         </article>
-        
+
         <article className="todoListContainer">
-        <TaskContext.Provider value={{
-          editModeHandler:taskEditMode,
-          deleteHandler:deleteTask,
-          completeHandler:taskCompleted,
-        }}> 
-          <Route path="/Active">
-            <TaskList
-              reOrderList={setTodoList}
-              taskElements={filterTasksActive()}
-              isFiltering
-              emptyFilterMsg={"There's no active tasks"}
-            />
-          </Route>
-          <Route path="/Done">
-            <TaskList
-              reOrderList={setTodoList}
-              taskElements={filterTasksDone()}
-              isFiltering
-              emptyFilterMsg={"Ups, there's no completed tasks"}
-            />
-          </Route>
-          <Route exact path="/">
-            <TaskList
-              reOrderList={setTodoList}
-              taskElements={tasks}
-            />
-          </Route>
-          </TaskContext.Provider>
-          <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} highlightClear={filterTasksDone} />
+          <TaskListContext.Provider value={{
+            reOrderList: setTodoList,
+            tasks:tasks
+          }}>
+            <TaskContext.Provider value={{
+              editModeHandler: taskEditMode,
+              deleteHandler: deleteTask,
+              completeHandler: taskCompleted,
+              
+
+            }}>
+              <Route path="/Active">
+                <TaskList
+                  isFilteringActiveTasks
+                  emptyFilterMsg={"There's no active tasks"}
+                />
+              </Route>
+              <Route path="/Done">
+                <TaskList
+                  isFilteringCompletedTasks
+                  emptyFilterMsg={"Ups, there's no completed tasks"}
+                />
+              </Route>
+              <Route exact path="/">
+                <TaskList/>
+              </Route>
+            </TaskContext.Provider>
+          </TaskListContext.Provider>
+          <Footer taskNumber={checkState()} handleClear={clearCompletedTasks} highlightClear={()=> filterItemsCompleted(tasks)} />
         </article>
-        
+
       </main>
     </>
   );
